@@ -32,8 +32,8 @@
     "workbench.editor.showTabs": "multiple",
     "workbench.sideBar.location": "left",
     "workbench.statusBar.visible": true,
-    "workbench.colorTheme": "Monokai Pro",
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.iconTheme": "material-icon-theme",
     "zenMode.fullScreen": false,
     "zenMode.hideLineNumbers": false,
     "errorLens.enabled": true,
@@ -72,5 +72,11 @@
     },
     "shellcheck.ignoreFileSchemes": ["git", "gitfs", "output"],
     "ctags-companion.command": "ctags -R --fields=+nKz --langmap=SystemVerilog:+.v -R rtl /opt/uvm-1.2/src",
-    "git.autofetch": true
+    "git.autofetch": true,
+    "oneDarkPro.vivid": true,
+    "oneDarkPro.italic": true,
+    "editor.fontFamily": "Menlo, Monaco, 'Cascadia Code', 'Fira Code', 'IBM Plex Mono', monospace",
+    "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
+    "editor.fontWeight": "normal",
+    "editor.fontSize": 12
 }

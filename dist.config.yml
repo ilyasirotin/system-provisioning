@@ -104,6 +104,10 @@ homebrew_installed_packages:
   - gh
   - shellcheck
   - sha2
+  - font-cascadia-code
+  - font-fira-code
+  - font-ibm-plex-mono
+  - 1password-cli
   # - watchman
   # - bash-completion
   # - doxygen
@@ -175,7 +179,6 @@ vscode_extensions:
   - ms-vscode-remote.remote-ssh-edit
   - ms-vscode.remote-explorer
   - ms-vscode.vscode-serial-monitor
-  - monokai.theme-monokai-pro-vscode
   - dan-c-underwood.arm
   - alefragnani.bookmarks
   - twxs.cmake
@@ -194,6 +197,8 @@ vscode_extensions:
   - gruntfuggly.todo-tree
   - mshr-h.veriloghdl
   - gediminaszlatkus.ctags-companion
+  - zhuangtongfa.material-theme
+  - pkief.material-icon-theme
 
 # MacOS system commands script
 osx_script: "~/.osx --no-restart"
