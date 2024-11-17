@@ -1,18 +1,66 @@
 ---
 # Set to 'true' to configure the Dock via dockutil.
-configure_dock: false
-dockitems_remove: []
-# - Launchpad
-# - TV
-# - Podcasts
-# - 'App Store'
-dockitems_persist: []
-# - name: "Sublime Text"
-#   path: "/Applications/Sublime Text.app/"
-#   pos: 5
+configure_dock: true
+dockitems_remove:
+  - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - FaceTime
+  - Calendar
+  - Contacts
+  - Reminders
+  - Notes
+  - Freeform
+  - TV
+  - Music
+  - Weather
+  - Tips
+  - Stocks
+  - Shortcuts
+  - Podcasts
+  - Passwords
+  - Notes
+  - Home
+  - Clock
+  - Calculator
+  - Stickies
+  - Siri
+  - Preview
+  - 'App Store'
+  - 'QuickTime Player'
+  - 'iPhone Mirroring'
+  - 'Find My'
+  - 'System Settings'
+
+dockitems_persist:
+  - name: "Firefox"
+    path: "/Applications/Firefox.app/"
+    pos: 3
+  - name: "iTerm"
+    path: "/Applications/iTerm.app/"
+    pos: 4
+  - name: "Obsidian"
+    path: "/Applications/Obsidian.app/"
+    pos: 5
+  - name: "Visual Studio Code"
+    path: "/Applications/Visual\ Studio\ Code.app/"
+    pos: 6
+  - name: "Docker"
+    path: "/Applications/Docker.app/"
+    pos: 7
+  - name: "1Password"
+    path: "/Applications/1Password.app/"
+    pos: 8
+  - name: "Spotify"
+    path: "/Applications/Spotify.app/"
+    pos: 9
+  - name: "Telegram"
+    path: "/Applications/Telegram.app/"
+    pos: 10
 
 homebrew_cask_accept_external_apps: true
-homebrew_clear_cache: true
 
 homebrew_installed_packages:
   - autoconf
@@ -94,6 +142,7 @@ homebrew_cask_apps:
   - mullvadvpn
   - xnconvert
   - postman
+  - foxitreader
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -146,4 +195,8 @@ vscode_extensions:
   - mshr-h.veriloghdl
   - gediminaszlatkus.ctags-companion
 
+# MacOS system commands script
 osx_script: "~/.osx --no-restart"
+
+# Glob pattern to ansible task files to run after all other tasks are finished.
+post_provision_tasks: []

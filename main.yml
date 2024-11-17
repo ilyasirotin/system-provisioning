@@ -31,3 +31,12 @@
 
     - import_tasks: tasks/shell.yml
       tags: ['shell']
+
+    - name: Run post-provision task files
+      tags: ['post']
+      block:
+        - name: Run configured post-provision ansible task files
+          include_tasks: "{{ outer_item }}"
+          loop_control:
+            loop_var: outer_item
+          with_fileglob: "{{ post_provision_tasks | default(omit) }}"

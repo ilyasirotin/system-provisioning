@@ -12,5 +12,9 @@
     "key": "cmd+d",
     "command": "editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+shift+l",
+    "command": "workbench.action.terminal.new"
   }
 ]
