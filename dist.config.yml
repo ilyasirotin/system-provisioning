@@ -19,16 +19,16 @@ homebrew_installed_packages:
   - automake
   - make
   - gcc
-  - bfg
+  - bfg # Remove large files or passwords from Git history like git-filter-branch
   - coreutils
-  - direnv
-  - dnsmasq
-  - fzf
-  - mcfly
+  - direnv # Load/unload environment variables based on $PWD
+  - dnsmasq # Lightweight DNS forwarder and DHCP server
+  - fzf # Command-line fuzzy finder written in Go
+  - mcfly # Shell history search
   - gnu-time
   - htop
-  - rcm
-  - readline
+  - rcm # RC file (dotfile) management
+  - readline # Library for command-line editing
   - tmux
   - vim
   - unzip
@@ -37,57 +37,63 @@ homebrew_installed_packages:
   - universal-ctags
   - gpg
   - curl
-  - httpie
-  - iperf
-  - libevent
+  - httpie # User-friendly cURL replacement (command-line HTTP client)
   - nmap
-  - pngpaste
-  - ssh-copy-id
-  - readline
+  - pngpaste # Paste PNG into files
+  - ssh-copy-id # Add a public key to a remote machine's authorized_keys file
+  - readline # Library for command-line editing
   - openssl
-  - pv
+  - pv # Monitor data's progress through a pipe
   - wget
-  - wrk
+  - wrk # HTTP benchmarking tool
+  - iperf # Tool to measure maximum TCP and UDP bandwidth
   - tree
-  - bat
-  - ripgrep
-  - tldr
+  - bat # Clone of cat(1) with syntax highlighting and Git integration
+  - tldr # Simplified and community-driven man pages
   - jq
-  - ncdu
+  - ncdu # NCurses Disk Usage
+  - dive # Tool for exploring each layer in a docker image
+  - gh
+  - shellcheck
+  - sha2
   # - watchman
   # - bash-completion
   # - doxygen
   # - gettext
   # - gifsicle
-  # - gh
+  # - siege
+  # - tig
+  # - libevent
+  # - ripgrep
 
 homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - 1password
+  - 1password # Requires additional configuration
   - google-chrome
   - firefox
-  - iterm2
-  - ngrok
+  - iterm2 # Requires additional configuration
+  - ngrok # Requires additional configuration
   - telegram
-  - visual-studio-code
+  - visual-studio-code # Requires additional configuration
   - vlc
   - launchcontrol
-  - aldente
-  - tg-pro
-  - mos
-  - jetbrains-toolbox
+  - aldente # Requires additional configuration
+  - tg-pro # Requires additional configuration
+  - mos # Requires additional configuration
+  - jetbrains-toolbox # Requires additional configuration
   - logi-options+
-  - obsidian
+  - obsidian # Requires additional configuration
   - spotify
   - qbittorrent
   - crossover
-  - docker
+  - docker # Requires additional configuration
   - handbrake
   - cyberduck
   - mullvadvpn
   - xnconvert
+  - postman
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -105,44 +111,39 @@ configure_vscode: true
 vscode_extension_dir: "~/.vscode/extensions"
 vscode_extensions:
   - redhat.ansible
-  - dan-c-underwood.arm
-  - alefragnani.bookmarks
-  - ms-vscode.cpptools-extension-pack
-  - twxs.cmake
+  - redhat.vscode-xml
+  - redhat.vscode-yaml
   - ms-vscode.cmake-tools
-  - vadimcn.vscode-lldb
-  - firefox-devtools.vscode-firefox-debug
+  - ms-vscode.cpptools-extension-pack
   - ms-azuretools.vscode-docker
-  - mikestead.dotenv
-  - usernamehw.errorlens
-  - dbaeumer.vscode-eslint
-  - donjayamanne.githistory
-  - eamodio.gitlens
   - ms-vscode.hexeditor
-  - donjayamanne.jquerysnippets
   - ms-vscode.makefile-tools
-  - yzhang.markdown-all-in-one
-  - yzane.markdown-pdf
-  - monokai.theme-monokai-pro-vscode
-  - christian-kohler.npm-intellisense
-  - esbenp.prettier-vscode
   - ms-python.vscode-pylance
   - ms-python.python
   - ms-python.debugpy
-  - mechatroner.rainbow-csv
+  - wholroyd.jinja
   - ms-vscode-remote.vscode-remote-extensionpack
   - ms-vscode-remote.remote-ssh-edit
   - ms-vscode.remote-explorer
   - ms-vscode.vscode-serial-monitor
+  - monokai.theme-monokai-pro-vscode
+  - dan-c-underwood.arm
+  - alefragnani.bookmarks
+  - twxs.cmake
+  - vadimcn.vscode-lldb
+  - firefox-devtools.vscode-firefox-debug
+  - mikestead.dotenv
+  - usernamehw.errorlens
+  - dbaeumer.vscode-eslint
+  - eamodio.gitlens
+  - yzhang.markdown-all-in-one
+  - yzane.markdown-pdf
+  - esbenp.prettier-vscode
+  - mechatroner.rainbow-csv
   - timonwong.shellcheck
-  - richie5um2.vscode-sort-json
   - jock.svg
   - gruntfuggly.todo-tree
   - mshr-h.veriloghdl
-  - tomoki1207.pdf
-  - redhat.vscode-xml
-  - redhat.vscode-yaml
   - gediminaszlatkus.ctags-companion
-  - wholroyd.jinja
 
 osx_script: "~/.osx --no-restart"
