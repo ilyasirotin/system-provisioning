@@ -1,0 +1,148 @@
+---
+# Set to 'true' to configure the Dock via dockutil.
+configure_dock: false
+dockitems_remove: []
+# - Launchpad
+# - TV
+# - Podcasts
+# - 'App Store'
+dockitems_persist: []
+# - name: "Sublime Text"
+#   path: "/Applications/Sublime Text.app/"
+#   pos: 5
+
+homebrew_cask_accept_external_apps: true
+homebrew_clear_cache: true
+
+homebrew_installed_packages:
+  - autoconf
+  - automake
+  - make
+  - gcc
+  - bfg
+  - coreutils
+  - direnv
+  - dnsmasq
+  - fzf
+  - mcfly
+  - gnu-time
+  - htop
+  - rcm
+  - readline
+  - tmux
+  - vim
+  - unzip
+  - zlib
+  - xz
+  - universal-ctags
+  - gpg
+  - curl
+  - httpie
+  - iperf
+  - libevent
+  - nmap
+  - pngpaste
+  - ssh-copy-id
+  - readline
+  - openssl
+  - pv
+  - wget
+  - wrk
+  - tree
+  - bat
+  - ripgrep
+  - tldr
+  - jq
+  - ncdu
+  # - watchman
+  # - bash-completion
+  # - doxygen
+  # - gettext
+  # - gifsicle
+  # - gh
+
+homebrew_taps: []
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - 1password
+  - google-chrome
+  - firefox
+  - iterm2
+  - ngrok
+  - telegram
+  - visual-studio-code
+  - vlc
+  - launchcontrol
+  - aldente
+  - tg-pro
+  - mos
+  - jetbrains-toolbox
+  - logi-options+
+  - obsidian
+  - spotify
+  - qbittorrent
+  - crossover
+  - docker
+  - handbrake
+  - cyberduck
+  - mullvadvpn
+  - xnconvert
+
+# See `geerlingguy.mas` role documentation for usage instructions.
+mas_installed_apps:
+  - { id: 497799835, name: "Xcode" }
+  - { id: 462054704, name: "Microsoft Word" }
+  - { id: 462058435, name: "Microsoft Excel" }
+  - { id: 462062816, name: "Microsoft PowerPoint" }
+  - { id: 985367838, name: "Microsoft Outlook" }
+
+mas_uninstalled_apps:
+  - { id: 682658836, name: "GarageBand" }
+
+# Wheter install VSCode plugins and set pre-defined settings templates.
+configure_vscode: true
+vscode_extension_dir: "~/.vscode/extensions"
+vscode_extensions:
+  - redhat.ansible
+  - dan-c-underwood.arm
+  - alefragnani.bookmarks
+  - ms-vscode.cpptools-extension-pack
+  - twxs.cmake
+  - ms-vscode.cmake-tools
+  - vadimcn.vscode-lldb
+  - firefox-devtools.vscode-firefox-debug
+  - ms-azuretools.vscode-docker
+  - mikestead.dotenv
+  - usernamehw.errorlens
+  - dbaeumer.vscode-eslint
+  - donjayamanne.githistory
+  - eamodio.gitlens
+  - ms-vscode.hexeditor
+  - donjayamanne.jquerysnippets
+  - ms-vscode.makefile-tools
+  - yzhang.markdown-all-in-one
+  - yzane.markdown-pdf
+  - monokai.theme-monokai-pro-vscode
+  - christian-kohler.npm-intellisense
+  - esbenp.prettier-vscode
+  - ms-python.vscode-pylance
+  - ms-python.python
+  - ms-python.debugpy
+  - mechatroner.rainbow-csv
+  - ms-vscode-remote.vscode-remote-extensionpack
+  - ms-vscode-remote.remote-ssh-edit
+  - ms-vscode.remote-explorer
+  - ms-vscode.vscode-serial-monitor
+  - timonwong.shellcheck
+  - richie5um2.vscode-sort-json
+  - jock.svg
+  - gruntfuggly.todo-tree
+  - mshr-h.veriloghdl
+  - tomoki1207.pdf
+  - redhat.vscode-xml
+  - redhat.vscode-yaml
+  - gediminaszlatkus.ctags-companion
+  - wholroyd.jinja
+
+osx_script: "~/.osx --no-restart"

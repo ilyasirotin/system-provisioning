@@ -1,0 +1,61 @@
+---
+- name: Check for vscode
+  ansible.builtin.command: "code --version"
+  register: vscode_installed
+  ignore_errors: true
+  check_mode: false
+  changed_when: false
+
+- name: List installed extensions
+  ansible.builtin.command: "code --list-extensions"
+  register: vscode_extensions_installed
+  when: vscode_installed.rc == 0
+  check_mode: false
+  changed_when: false
+
+- name: Install vscode extensions
+  ansible.builtin.command:
+    cmd: "code --install-extension {{ item }}"
+  loop: "{{ vscode_extensions }}"
+  when: vscode_installed.rc == 0 and item not in vscode_extensions_installed.stdout_lines
+  changed_when: vscode_extensions_installed.rc == 0
+
+- name: Check if settings.json is a symlink
+  stat:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+  register: settings_json_stat
+
+- name: Remove settings.json if it's not a symlink
+  file:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+    state: absent
+  when: not settings_json_stat.stat.islnk
+
+- name: Link vscode settings.json file
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/vscode-settings.json"
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+    state: link
+    mode: 0644
+    force: true
+  become: false
+
+- name: Check if keybindings.json is a symlink
+  stat:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/keybindings.json"
+  register: keybindings_json_stat
+
+- name: Remove keybindings.json if it's not a symlink
+  file:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/keybindings.json"
+    state: absent
+  when: not keybindings_json_stat.stat.islnk
+
+- name: Link vscode keybindings.json file
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/vscode-keybindings.json"
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/keybindings.json"
+    state: link
+    mode: 0644
+    force: true
+  become: false

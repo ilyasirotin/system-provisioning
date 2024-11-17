@@ -1,0 +1,23 @@
+---
+- name: Get the path to ZSH
+  become: false
+  delegate_to: all
+  action: command which zsh
+  register: zsh_path
+
+- name: "Ensure homebrew zsh is in allowed shells"
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: "{{ zsh_path.stdout }}"
+  become: true
+
+- name: Set ZSH as the default shell
+  ansible.builtin.command: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
+  become: true
+
+- name: "Create a default ZSH configuration"
+  ansible.builtin.template:
+    src: templates/.zshrc.j2
+    dest: /Users/{{ lookup('env', 'USER') }}/.zshrc
+    owner: "{{ lookup('env', 'USER') }}"
+    force: true

@@ -1,0 +1,33 @@
+---
+- name: MacOS configuration
+  hosts: all
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: Include playbook configuration
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ['always']
+
+  roles:
+    - role: geerlingguy.mac.homebrew
+      tags: ['homebrew']
+    - role: geerlingguy.mac.mas
+      when: mas_installed_apps or mas_installed_app_ids
+      tags: ['mas']
+    - role: geerlingguy.mac.dock
+      when: configure_dock
+      tags: ['dock']
+    - role: dnsmasq
+      tags: ['dnsmasq']
+
+  tasks:
+    - import_tasks: tasks/vscode.yml
+      when: configure_vscode
+      tags: ['vscode']
+
+    - import_tasks: tasks/shell.yml
+      tags: ['shell']
