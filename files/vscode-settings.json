@@ -78,5 +78,6 @@
     "editor.fontFamily": "Menlo, Monaco, 'Cascadia Code', 'Fira Code', 'IBM Plex Mono', monospace",
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
     "editor.fontWeight": "normal",
-    "editor.fontSize": 12
+    "editor.fontSize": 12,
+    "editor.rulers": [120]
 }

@@ -29,8 +29,8 @@
       when: configure_vscode
       tags: ['vscode']
 
-    - import_tasks: tasks/shell.yml
-      tags: ['shell']
+    # - import_tasks: tasks/shell.yml
+    #   tags: ['shell']
 
     - name: Run post-provision task files
       tags: ['post']

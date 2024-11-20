@@ -67,16 +67,16 @@ homebrew_installed_packages:
   - automake
   - make
   - gcc
-  - bfg # Remove large files or passwords from Git history like git-filter-branch
+  - bfg                        # Remove large files or passwords from Git history like git-filter-branch
   - coreutils
-  - direnv # Load/unload environment variables based on $PWD
-  - dnsmasq # Lightweight DNS forwarder and DHCP server
-  - fzf # Command-line fuzzy finder written in Go
-  - mcfly # Shell history search
+  - direnv                     # Load/unload environment variables based on $PWD
+  - dnsmasq                    # Lightweight DNS forwarder and DHCP server
+  - fzf                        # Command-line fuzzy finder written in Go
+  - mcfly                      # Shell history search
   - gnu-time
   - htop
-  - rcm # RC file (dotfile) management
-  - readline # Library for command-line editing
+  - rcm                        # RC file (dotfile) management
+  - readline                   # Library for command-line editing
   - tmux
   - vim
   - unzip
@@ -85,22 +85,22 @@ homebrew_installed_packages:
   - universal-ctags
   - gpg
   - curl
-  - httpie # User-friendly cURL replacement (command-line HTTP client)
+  - httpie                     # User-friendly cURL replacement (command-line HTTP client)
   - nmap
-  - pngpaste # Paste PNG into files
-  - ssh-copy-id # Add a public key to a remote machine's authorized_keys file
-  - readline # Library for command-line editing
+  - pngpaste                   # Paste PNG into files
+  - ssh-copy-id                # Add a public key to a remote machine's authorized_keys file
+  - readline                   # Library for command-line editing
   - openssl
-  - pv # Monitor data's progress through a pipe
+  - pv                         # Monitor data's progress through a pipe
   - wget
-  - wrk # HTTP benchmarking tool
-  - iperf # Tool to measure maximum TCP and UDP bandwidth
+  - wrk                        # HTTP benchmarking tool
+  - iperf                      # Tool to measure maximum TCP and UDP bandwidth
   - tree
-  - bat # Clone of cat(1) with syntax highlighting and Git integration
-  - tldr # Simplified and community-driven man pages
+  - bat                        # Clone of cat(1) with syntax highlighting and Git integration
+  - tldr                       # Simplified and community-driven man pages
   - jq
-  - ncdu # NCurses Disk Usage
-  - dive # Tool for exploring each layer in a docker image
+  - ncdu                       # NCurses Disk Usage
+  - dive                       # Tool for exploring each layer in a docker image
   - gh
   - shellcheck
   - sha2
@@ -122,25 +122,25 @@ homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - 1password # Requires additional configuration
+  - 1password                         # Requires additional configuration
   - google-chrome
   - firefox
-  - iterm2 # Requires additional configuration
-  - ngrok # Requires additional configuration
+  - iterm2                            # Configuration will be retrieved from iCloud. It's necessary to install shell integration
+  - ngrok                             # Requires additional configuration
   - telegram
-  - visual-studio-code # Requires additional configuration
+  - visual-studio-code
   - vlc
   - launchcontrol
-  - aldente # Requires additional configuration
-  - tg-pro # Requires additional configuration
-  - mos # Requires additional configuration
-  - jetbrains-toolbox # Requires additional configuration
+  - aldente                           # Requires additional configuration
+  - tg-pro                            # Requires additional configuration
+  - mos                               # com.apple.quarantine xattr removed
+  - jetbrains-toolbox                 # Complicated configuration. Use settings sync in specific IDE instead
   - logi-options+
-  - obsidian # Requires additional configuration
+  - obsidian                          # Application configurations are stored in the vault
   - spotify
-  - qbittorrent
+  - qbittorrent                       # com.apple.quarantine xattr removed
   - crossover
-  - docker # Requires additional configuration
+  - docker                            # TODO: Use pre-defined docker engine configuration
   - handbrake
   - cyberduck
   - mullvadvpn
@@ -159,7 +159,7 @@ mas_installed_apps:
 mas_uninstalled_apps:
   - { id: 682658836, name: "GarageBand" }
 
-# Wheter install VSCode plugins and set pre-defined settings templates.
+# Wheter install VSCode plugins and set defined settings templates.
 configure_vscode: true
 vscode_extension_dir: "~/.vscode/extensions"
 vscode_extensions:
@@ -200,8 +200,13 @@ vscode_extensions:
   - zhuangtongfa.material-theme
   - pkief.material-icon-theme
 
+xattr_remove_apps:
+  - qBittorrent.app
+  - Mos.app
+
 # MacOS system commands script
 osx_script: "~/.osx --no-restart"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
-post_provision_tasks: []
+post_provision_tasks:
+  - tasks/xattr.yml

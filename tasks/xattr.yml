@@ -1,0 +1,23 @@
+---
+- name: Collect application stats
+  ansible.builtin.stat:
+    path: "/Applications/{{ item }}"
+  register: application_stats
+  loop: "{{ xattr_remove_apps }}"
+
+- name: Extract valid applications
+  set_fact:
+    valid_applications: "{{ application_stats.results | selectattr('stat.exists', 'eq', true) | map(attribute='item') | list }}"
+
+- name: Check if xattr exists
+  ansible.builtin.command:
+    cmd: "xattr /Applications/{{ item }}"
+  register: xattr_result
+  loop: "{{ valid_applications }}"
+  changed_when: false
+
+- name: Remove xattr
+  ansible.builtin.command:
+    cmd: "xattr -d com.apple.quarantine /Applications/{{ item.item }}"
+  loop: "{{ xattr_result.results }}"
+  when: "'com.apple.quarantine' in item.stdout_lines"
