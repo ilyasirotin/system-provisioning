@@ -125,7 +125,7 @@ homebrew_cask_apps:
   - 1password                         # Requires additional configuration
   - google-chrome
   - firefox
-  - iterm2                            # Configuration will be retrieved from iCloud. It's necessary to install shell integration
+  - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
   - ngrok                             # Requires additional configuration
   - telegram
   - visual-studio-code
@@ -174,11 +174,11 @@ vscode_extensions:
   - ms-python.vscode-pylance
   - ms-python.python
   - ms-python.debugpy
-  - wholroyd.jinja
   - ms-vscode-remote.vscode-remote-extensionpack
   - ms-vscode-remote.remote-ssh-edit
   - ms-vscode.remote-explorer
   - ms-vscode.vscode-serial-monitor
+  - wholroyd.jinja
   - dan-c-underwood.arm
   - alefragnani.bookmarks
   - twxs.cmake
@@ -204,9 +204,8 @@ xattr_remove_apps:
   - qBittorrent.app
   - Mos.app
 
-# MacOS system commands script
-osx_script: "~/.osx --no-restart"
-
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/xattr.yml
+  - tasks/dotfiles.yml
+  - tasks/ssh.yml

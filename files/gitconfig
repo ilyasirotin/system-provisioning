@@ -1,0 +1,7 @@
+[user]
+	name = Ilya Sirotin
+	email = ilyasirotin.we@gmail.com
+[init]
+	defaultBranch = master
+[core]
+	editor = vim

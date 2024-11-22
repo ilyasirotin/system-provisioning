@@ -1,0 +1,10 @@
+---
+- name: Link dotfiles
+  ansible.builtin.include_role:
+    name: symlink
+  vars:
+    symlink_src: "{{ playbook_dir }}/files/{{ item }}"
+    symlink_dst: "{{ ansible_env.HOME }}/.{{ item }}"
+  loop:
+    - "gitconfig"
+    - "vimrc"
