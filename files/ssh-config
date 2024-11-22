@@ -1,10 +1,10 @@
 Host github.com
     HostName github.com
     User git
-    IdentityFile ~/.ssh/github.pub
+    IdentityFile ~/.ssh/github
 
 Host *.lan
-    IdentityFile ~/.ssh/default.pub
+    IdentityFile ~/.ssh/default
 
 Host router.lan
     Port 8392
