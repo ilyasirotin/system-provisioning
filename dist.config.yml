@@ -131,12 +131,12 @@ homebrew_cask_apps:
   - visual-studio-code
   - vlc
   - launchcontrol
-  - aldente                           # Requires additional configuration
-  - tg-pro                            # Requires additional configuration
+  - aldente                           # Manual configuration required at first app launch (check README.md)
+  - tg-pro                            # Manual configuration required at first app launch (check README.md)
   - mos                               # com.apple.quarantine xattr removed
-  - jetbrains-toolbox                 # Complicated configuration. Use settings sync in specific IDE instead
+  - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
   - logi-options+
-  - obsidian                          # Application configurations are stored in the vault
+  - obsidian                          # Application configurations always stored in the vault
   - spotify
   - qbittorrent                       # com.apple.quarantine xattr removed
   - crossover
@@ -204,8 +204,13 @@ xattr_remove_apps:
   - qBittorrent.app
   - Mos.app
 
+# Path to common shell scripts
+scripts_dir: "{{ playbook_dir }}/scripts"
+
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/xattr.yml
   - tasks/dotfiles.yml
   - tasks/ssh.yml
+  - tasks/defaults.yml
+  - tasks/artifacts.yml

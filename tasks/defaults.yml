@@ -1,0 +1,30 @@
+---
+- name: Сlose "TG Pro" instance
+  ansible.builtin.command:
+    cmd: osascript -e 'tell application "TG Pro" to quit'
+  changed_when: false
+
+- name: Apply "TG Pro" defaults
+  ansible.builtin.command:
+    cmd: "{{ scripts_dir }}/tg-pro-defaults"
+  changed_when: false
+
+- name: Start "TG Pro"
+  ansible.builtin.command:
+    cmd: open -a "TG Pro"
+  changed_when: false
+
+- name: Сlose "Aldente" instance
+  ansible.builtin.command:
+    cmd: osascript -e 'tell application "Aldente" to quit'
+  changed_when: false
+
+- name: Apply "Aldente" defaults
+  ansible.builtin.command:
+    cmd: "{{ scripts_dir }}/aldente-defaults"
+  changed_when: false
+
+- name: Start "Aldente"
+  ansible.builtin.command:
+    cmd: open -a Aldente
+  changed_when: false

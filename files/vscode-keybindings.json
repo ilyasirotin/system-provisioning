@@ -4,7 +4,7 @@
     "command": "workbench.action.openRecent"
   },
   {
-    "key": "cmd+enter",
+    "key": "shift+enter",
     "command": "editor.action.insertLineAfter",
     "when": "editorTextFocus"
   },

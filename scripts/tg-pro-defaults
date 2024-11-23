@@ -1,0 +1,27 @@
+#!/bin/bash
+
+defaults write -app "TG Pro" hideTutorialAlert -int 1
+
+defaults write -app "TG Pro" TBPreferenceKeyDoNotShowFanZeroRPMMessage -int 1
+
+defaults write -app "TG Pro" isCommonSectionAtTopOfStatusMenu -int 1
+
+defaults write -app "TG Pro" menuBarStackOrder -int 0
+
+defaults write -app "TG Pro" menuBarTempSensorIndex -int 3
+
+defaults write -app "TG Pro" showAppIcon -int 0
+
+defaults write -app "TG Pro" showFanInMenuBar -int 0
+
+defaults write -app "TG Pro" showTemp2InMenuBar -int 0
+
+defaults write -app "TG Pro" useSmallerMenuFont -int 1
+
+defaults write -app "TG Pro" limitForHighestCPU -int 85
+
+defaults write -app "TG Pro" limitForSpecificArea -int 85
+
+defaults write -app "TG Pro" showHighestCPUAlerts -int 1
+
+defaults write -app "TG Pro" soundForNotifications -string Sosumi
