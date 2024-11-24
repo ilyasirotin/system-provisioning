@@ -82,5 +82,6 @@
     "editor.rulers": [
         120
     ],
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.accessibilitySupport": "off"
 }
