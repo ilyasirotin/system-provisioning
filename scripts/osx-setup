@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Disable startup sound
+sudo nvram StartupMute=%01
+
+sudo scutil --set ComputerName "$COMPUTER_NAME" && \
+sudo scutil --set HostName "$HOSTNAME" && \
+sudo scutil --set LocalHostName "$HOSTNAME" && \
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$HOSTNAME"

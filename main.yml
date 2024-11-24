@@ -35,13 +35,16 @@
     - ansible.builtin.import_tasks: tasks/xattr.yml
       tags: ['xattr']
 
-    - name: Include app defaults task
+    - name: Include defaults configuration task
       ansible.builtin.include_tasks:
         file: tasks/defaults.yml
         apply:
           tags: ["defaults"]
       loop: "{{ app_defaults_scripts }}"
       tags: ["defaults"]
+
+    - ansible.builtin.import_tasks: tasks/osx-setup.yml
+      tags: ['osx-setup']
 
     - name: Run post-provision task files
       tags: ['post']

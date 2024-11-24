@@ -1,13 +1,21 @@
 ---
-- name: Make script executable
+- name: Info
+  ansible.builtin.debug:
+    msg: "Apply defaults for {{ item.name }}"
+
+- name: "Make script executable"
   ansible.builtin.file:
     dest: "{{ item.script }}"
     mode: a+x
 
 - name: Quit application
   ansible.builtin.command:
-    cmd: "osascript -e 'tell application \"{{ item.name }}\" to quit'"
+    cmd: "osascript -e 'tell application \"{{ app }}\" to quit'"
   changed_when: false
+  when: item.restart is defined and item.restart | length > 0
+  loop: "{{ item.restart }}"
+  loop_control:
+    loop_var: app
 
 - name: Apply defaults
   ansible.builtin.command:
@@ -15,5 +23,9 @@
 
 - name: Start application
   ansible.builtin.command:
-    cmd: "open -a \"{{ item.name }}\""
+    cmd: "open -a \"{{ app }}\""
   changed_when: false
+  when: item.restart is defined and item.restart | length > 0
+  loop: "{{ item.restart }}"
+  loop_control:
+    loop_var: app

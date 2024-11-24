@@ -13,4 +13,3 @@ defaults write -app "Mos" speed -int 3
 defaults write -app "Mos" step -int 35
 
 defaults write -app "Mos" toggle -int 0
-

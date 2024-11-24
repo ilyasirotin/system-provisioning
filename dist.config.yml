@@ -1,4 +1,11 @@
 ---
+# MacOS setup script configs
+macos_hostname: "macbook-pro"
+macos_computer_name: "MacBook Pro"
+
+# Path to common shell scripts
+scripts_dir: "{{ playbook_dir }}/scripts"
+
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
 dockitems_remove:
@@ -28,6 +35,9 @@ dockitems_remove:
   - Stickies
   - Siri
   - Preview
+  - Keynote
+  - Numbers
+  - Pages
   - 'App Store'
   - 'QuickTime Player'
   - 'iPhone Mirroring'
@@ -116,7 +126,9 @@ homebrew_installed_packages:
   # - siege
   # - tig
   # - libevent
-  # - ripgrep
+  # - awscli
+  # - azure-cli
+  # - google-cloud-sdk
 
 homebrew_taps: []
 
@@ -133,7 +145,7 @@ homebrew_cask_apps:
   - launchcontrol
   - aldente                           # Manual configuration required at first app launch (check README.md)
   - tg-pro                            # Manual configuration required at first app launch (check README.md)
-  - mos                               # com.apple.quarantine xattr removed
+  - mos                               # com.apple.quarantine xattr removed, default settings applied
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
   - logi-options+
   - obsidian                          # Application configurations always stored in the vault
@@ -204,17 +216,20 @@ xattr_remove_apps:
   - qBittorrent.app
   - Mos.app
 
-# Path to common shell scripts
-scripts_dir: "{{ playbook_dir }}/scripts"
-
 # Scripts set the default settings for the application
 app_defaults_scripts:
-  - { name: "Aldente", script: "{{ scripts_dir }}/aldente-defaults" }
-  - { name: "TG Pro", script: "{{ scripts_dir }}/tg-pro-defaults" }
-  - { name: "Mos", script: "{{ scripts_dir }}/mos-defaults" }
+  - { name: "Aldente", script: "{{ scripts_dir }}/defaults/aldente", restart: ["Aldente"] }
+  - { name: "TG Pro", script: "{{ scripts_dir }}/defaults/tg-pro", restart: ["TG Pro"] }
+  - { name: "Mos", script: "{{ scripts_dir }}/defaults/mos", restart: ["Mos"] }
+  - { name: "Global", script: "{{ scripts_dir }}/defaults/global", restart: ["Finder", "Dock"] }
+
+# Screenshots
+macos_screenshots_dir: "{{ ansible_env.HOME }}/Documents/Screenshots"
+macos_screenshots_type: "png"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/dotfiles.yml
   - tasks/ssh.yml
-  - tasks/artifacts.yml
+  - tasks/clean.yml
+  - tasks/screenshots.yml
