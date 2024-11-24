@@ -111,7 +111,7 @@
 - **⌘ + Option + Esc** -> Force Quit
 
 ### Finder
-- **Cmd + Shift + G** -> Go to folder (you can paste any path)
-- **Cmd + Shift + H** -> Open Home directory
-- **Cmd + Shift + D** -> Desktop
-- **Cmd + Shift + O** -> Documents
+- **⌘ + Shift + G** -> Go to folder (you can paste any path)
+- **⌘ + Shift + H** -> Open Home directory
+- **⌘ + Shift + D** -> Desktop
+- **⌘ + Shift + O** -> Documents
