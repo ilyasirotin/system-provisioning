@@ -1,0 +1,16 @@
+#!/bin/bash
+
+defaults write -app "Mos" hideStatusItem -int 1
+
+defaults write -app "Mos" precision -int 1
+
+defaults write -app "Mos" reverse -int 0
+
+defaults write -app "Mos" smooth -int 1
+
+defaults write -app "Mos" speed -int 3
+
+defaults write -app "Mos" step -int 35
+
+defaults write -app "Mos" toggle -int 0
+

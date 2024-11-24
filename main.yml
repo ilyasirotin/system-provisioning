@@ -7,7 +7,7 @@
 
   pre_tasks:
     - name: Include playbook configuration
-      include_vars: "{{ item }}"
+      ansible.builtin.include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
@@ -25,18 +25,29 @@
       tags: ['dnsmasq']
 
   tasks:
-    - import_tasks: tasks/vscode.yml
+    - ansible.builtin.import_tasks: tasks/vscode.yml
       when: configure_vscode
       tags: ['vscode']
 
-    - import_tasks: tasks/zsh.yml
+    - ansible.builtin.import_tasks: tasks/zsh.yml
       tags: ['shell']
+
+    - ansible.builtin.import_tasks: tasks/xattr.yml
+      tags: ['xattr']
+
+    - name: Include app defaults task
+      ansible.builtin.include_tasks:
+        file: tasks/defaults.yml
+        apply:
+          tags: ["defaults"]
+      loop: "{{ app_defaults_scripts }}"
+      tags: ["defaults"]
 
     - name: Run post-provision task files
       tags: ['post']
       block:
         - name: Run configured post-provision ansible task files
-          include_tasks: "{{ outer_item }}"
+          ansible.builtin.include_tasks: "{{ outer_item }}"
           loop_control:
             loop_var: outer_item
           with_fileglob: "{{ post_provision_tasks | default(omit) }}"

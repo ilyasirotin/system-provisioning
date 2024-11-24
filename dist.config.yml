@@ -207,10 +207,14 @@ xattr_remove_apps:
 # Path to common shell scripts
 scripts_dir: "{{ playbook_dir }}/scripts"
 
+# Scripts set the default settings for the application
+app_defaults_scripts:
+  - { name: "Aldente", script: "{{ scripts_dir }}/aldente-defaults" }
+  - { name: "TG Pro", script: "{{ scripts_dir }}/tg-pro-defaults" }
+  - { name: "Mos", script: "{{ scripts_dir }}/mos-defaults" }
+
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
-  - tasks/xattr.yml
   - tasks/dotfiles.yml
   - tasks/ssh.yml
-  - tasks/defaults.yml
   - tasks/artifacts.yml
