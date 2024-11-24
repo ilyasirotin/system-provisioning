@@ -26,7 +26,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
 defaults write -g NSNavRecentPlacesLimit -int 5
 
-defaults write -g AppleShowAllExtensions -bool true
+defaults write -g AppleShowAllExtensions -bool false
 
 defaults write com.apple.finder AppleShowAllFiles false
 
@@ -72,7 +72,7 @@ defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0
 
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-defaults write -g ApplePressAndHoldEnabled -bool true
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 ###############################################################################
 # Activity Monitor                                                            #
