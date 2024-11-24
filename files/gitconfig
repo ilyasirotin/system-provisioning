@@ -1,28 +1,28 @@
 [user]
-	name = Ilya Sirotin
-	email = ilyasirotin.we@gmail.com
+  name = Ilya Sirotin
+  email = ilyasirotin.we@gmail.com
 [init]
-	defaultBranch = master
+  defaultBranch = master
 [core]
-	editor = vim
+  editor = vim
   excludesfile = ~/.gitignore
   autocrlf = input
-	whitespace=cr-at-eol
+  whitespace=cr-at-eol
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
-	ui = auto
+  ui = auto
 [credential]
   helper = osxkeychain
 [push]
-	default = current
+  default = current
 [pull]
-	rebase = false
+  rebase = false
 [alias]
   s = status
-	bl = branch -l
+  bl = branch -l
   c = commit
   ca = commit -a
   cm = commit -m
