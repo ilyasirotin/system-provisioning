@@ -1,0 +1,4 @@
+---
+dnsmasq_hosts:
+  - { domain: docker, ip: 127.0.0.1 }
+  - { domain: mac, ip: 127.0.0.1 }

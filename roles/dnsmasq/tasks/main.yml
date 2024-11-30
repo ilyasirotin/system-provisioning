@@ -1,37 +1,33 @@
 ---
 - name: Install homebrew packages
   community.general.homebrew:
-    name: ["dnsmasq"]
+    name: dnsmasq
     state: present
-    update_homebrew: true
+  notify:
+    - Clear homebrew cache
+    - Restart Dnsmasq
 
-- name: Get config directory
-  ansible.builtin.shell:
-    cmd: echo "$(brew --prefix)/etc/"
-  register: config_directory
-
-- name: Create config directory
-  ansible.builtin.file:
-    path: "{{ config_directory.stdout | trim }}"
-    state: directory
-
-- name: Create config
+- name: Copy Dnsmasq configuration in place
   ansible.builtin.template:
     src: dnsmasq.conf.j2
-    dest: "{{  config_directory.stdout | trim }}/dnsmasq.conf"
+    dest: "{{ homebrew_prefix }}/etc/dnsmasq.conf"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+    mode: "0644"
+  notify:
+    - Restart Dnsmasq
 
-- name: Create resolvers directory
+- name: Ensure resolver directory exists
   ansible.builtin.file:
-    path: /etc/resolver/
+    dest: /etc/resolver
     state: directory
+    mode: "0755"
   become: true
 
-- name: Create resolver
-  ansible.builtin.template:
-    src: local-resolver.j2
-    dest: /etc/resolver/localhost
+- name: Configure Dnsmasq resolver
+  ansible.builtin.copy:
+    src: resolver.conf
+    dest: "/etc/resolver/{{ item.domain }}"
+    mode: "0644"
+  loop: "{{ dnsmasq_hosts }}"
   become: true
-
-- name: Notes
-  ansible.builtin.debug:
-    msg: "Remember must be started with sudo, e.g. sudo brew services start dnsmasq"
