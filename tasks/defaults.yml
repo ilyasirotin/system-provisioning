@@ -3,7 +3,7 @@
   ansible.builtin.debug:
     msg: "Apply defaults for {{ item.name }}"
 
-- name: "Make script executable"
+- name: Make script executable
   ansible.builtin.file:
     dest: "{{ item.script }}"
     mode: a+x

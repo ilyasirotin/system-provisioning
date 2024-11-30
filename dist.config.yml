@@ -6,6 +6,9 @@ macos_computer_name: "MacBook Pro"
 # Path to common shell scripts
 scripts_dir: "{{ playbook_dir }}/scripts"
 
+# Zsh configs
+zsh_completions_dir: "{{ ansible_env.HOME }}/.zsh/completions"
+
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
 dockitems_remove:
@@ -96,15 +99,12 @@ homebrew_installed_packages:
   - gpg
   - curl
   - httpie                     # User-friendly cURL replacement (command-line HTTP client)
-  - nmap
   - pngpaste                   # Paste PNG into files
   - ssh-copy-id                # Add a public key to a remote machine's authorized_keys file
   - readline                   # Library for command-line editing
   - openssl
   - pv                         # Monitor data's progress through a pipe
   - wget
-  - wrk                        # HTTP benchmarking tool
-  - iperf                      # Tool to measure maximum TCP and UDP bandwidth
   - tree
   - bat                        # Clone of cat(1) with syntax highlighting and Git integration
   - tldr                       # Simplified and community-driven man pages
@@ -118,6 +118,14 @@ homebrew_installed_packages:
   - font-fira-code
   - font-ibm-plex-mono
   - 1password-cli
+  - colima
+  - docker
+  - docker-compose
+  - docker-buildx
+  - docker-credential-helper
+  # - wrk                        # HTTP benchmarking tool
+  # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
+  # - nmap
   # - watchman
   # - bash-completion
   # - doxygen
@@ -152,13 +160,13 @@ homebrew_cask_apps:
   - spotify
   - qbittorrent                       # com.apple.quarantine xattr removed
   - crossover
-  - docker                            # TODO: Use pre-defined docker engine configuration
   - handbrake
   - cyberduck
   - mullvadvpn
   - xnconvert
   - postman
   - foxitreader
+  # - docker
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -218,14 +226,21 @@ xattr_remove_apps:
 
 # Scripts set the default settings for the application
 app_defaults_scripts:
+  - { name: "Global", script: "{{ scripts_dir }}/defaults/global", restart: ["Finder", "Dock"] }
   - { name: "Aldente", script: "{{ scripts_dir }}/defaults/aldente", restart: ["Aldente"] }
   - { name: "TG Pro", script: "{{ scripts_dir }}/defaults/tg-pro", restart: ["TG Pro"] }
   - { name: "Mos", script: "{{ scripts_dir }}/defaults/mos", restart: ["Mos"] }
-  - { name: "Global", script: "{{ scripts_dir }}/defaults/global", restart: ["Finder", "Dock"] }
 
 # Screenshots
 macos_screenshots_dir: "{{ ansible_env.HOME }}/Documents/Screenshots"
 macos_screenshots_type: "png"
+
+# Colima settings
+colima_profile: default
+colima_cpu: 8
+colima_memory: 16
+colima_disk: 256
+colima_vm_type: vz
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
