@@ -245,14 +245,20 @@ colima_vm_type: vz
 # Git configs
 git_user_name: "Ilya Sirotin"
 git_user_email: ilyasirotin.we@gmail.com
-git_sign_commit: false
+git_ssh_key_name: default
 # https://github.com/settings/tokens
 git_github_token: you_personal_token
 
+# Github configs
+github_add_ssh_key: true
+github_force_ssh_key: true # Replace existing
+github_ssh_key_name: default
+github_ssh_key_type: "ed25519"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
-  - tasks/dotfiles.yml
   - tasks/ssh.yml
-  - tasks/clean.yml
+  - tasks/github.yml
+  - tasks/dotfiles.yml
   - tasks/screenshots.yml
+  - tasks/clean.yml

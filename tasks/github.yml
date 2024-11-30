@@ -1,0 +1,16 @@
+---
+- name: Add github ssh key
+  when: github_add_ssh_key
+  block:
+    - name: Generate ssh key-pair
+      community.crypto.openssh_keypair:
+        path: "{{ ansible_user_dir }}/.ssh/github"
+        type: "{{ github_ssh_key_type }}"
+        force: "{{ github_force_ssh_key }}"
+
+    - name: Upload ssh key to github.com
+      community.general.github_key:
+        name: "{{ github_ssh_key_name }}"
+        pubkey: "{{ lookup('ansible.builtin.file', '{{ ansible_user_dir }}/.ssh/github.pub') }}"
+        token: "{{ git_github_token }}"
+        force: "{{ github_force_ssh_key }}"

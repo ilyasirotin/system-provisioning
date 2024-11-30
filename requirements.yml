@@ -1,7 +1,5 @@
 ---
 collections:
-  - name: https://github.com/ansible-collections/community.general.git
-    type: git
-    version: main
-
+  - name: community.general
+  - name: community.crypto
   - name: geerlingguy.mac
