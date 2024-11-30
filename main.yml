@@ -1,6 +1,6 @@
 ---
 - name: MacOS configuration
-  hosts: all
+  hosts: local
 
   vars_files:
     - default.config.yml
@@ -23,6 +23,8 @@
       tags: ['dock']
     - role: dnsmasq
       tags: ['dnsmasq']
+    - role: git
+      tags: ['git']
 
   tasks:
     - ansible.builtin.import_tasks: tasks/vscode.yml

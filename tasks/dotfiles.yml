@@ -6,5 +6,4 @@
     symlink_src: "{{ playbook_dir }}/files/{{ item }}"
     symlink_dst: "{{ ansible_env.HOME }}/.{{ item }}"
   loop:
-    - "gitconfig"
     - "vimrc"

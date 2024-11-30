@@ -1,25 +1,36 @@
 [user]
-  name = Ilya Sirotin
-  email = ilyasirotin.we@gmail.com
+  name = {{ git_user_name | mandatory }}
+  email = {{ git_user_email | mandatory }}
+
 [init]
   defaultBranch = master
+
 [core]
   editor = vim
   excludesfile = ~/.gitignore
   autocrlf = input
   whitespace=cr-at-eol
+
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
   ui = auto
+
 [credential]
   helper = osxkeychain
+
 [push]
   default = current
+
 [pull]
   rebase = false
+
+# https://github.com/pstadler/keybase-gpg-github
+[commit]
+  gpgsign = {{ git_sign_commit | default(false) }}
+
 [alias]
   s = status
   bl = branch -l
@@ -30,3 +41,8 @@
   d = diff
   dc = diff --cached
   l = "log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
+
+{% if git_github_token is defined %}
+[url "https://{{ git_github_token }}@github.com/"]
+  insteadOf = https://github.com/
+{% endif %}

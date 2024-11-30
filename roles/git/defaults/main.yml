@@ -1,0 +1,6 @@
+---
+git_user_name: "John Doe"
+git_user_email: john.doe@sunfinance.group
+git_sign_commit: false
+# https://github.com/settings/tokens
+git_github_token: you_personal_token
