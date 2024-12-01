@@ -2,7 +2,7 @@
 
 ansible-galaxy install -r requirements.yml
 
-if [ ! -e "./config.cfg" ]; then
+if [ ! -e "./config.yml" ]; then
   cp dist.config.yml config.yml
 fi
 
