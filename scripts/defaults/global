@@ -45,7 +45,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
-defaults write NSGlobalDomain com.apple.springing.delay -float 0.4
+defaults write NSGlobalDomain com.apple.springing.delay -float 0.5
 
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 

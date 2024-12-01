@@ -64,18 +64,15 @@ dockitems_persist:
   - name: "Visual Studio Code"
     path: "/Applications/Visual\ Studio\ Code.app/"
     pos: 6
-  - name: "Docker"
-    path: "/Applications/Docker.app/"
-    pos: 7
   - name: "1Password"
     path: "/Applications/1Password.app/"
-    pos: 8
+    pos: 7
   - name: "Spotify"
     path: "/Applications/Spotify.app/"
-    pos: 9
+    pos: 8
   - name: "Telegram"
     path: "/Applications/Telegram.app/"
-    pos: 10
+    pos: 9
 
 homebrew_cask_accept_external_apps: true
 
@@ -89,7 +86,7 @@ homebrew_installed_packages:
   - direnv                     # Load/unload environment variables based on $PWD
   - dnsmasq                    # Lightweight DNS forwarder and DHCP server
   - fzf                        # Command-line fuzzy finder written in Go
-  - mcfly                      # Shell history search
+  - fd
   - gnu-time
   - htop
   - rcm                        # RC file (dotfile) management
@@ -103,9 +100,7 @@ homebrew_installed_packages:
   - gpg
   - curl
   - httpie                     # User-friendly cURL replacement (command-line HTTP client)
-  - pngpaste                   # Paste PNG into files
   - ssh-copy-id                # Add a public key to a remote machine's authorized_keys file
-  - readline                   # Library for command-line editing
   - openssl
   - pv                         # Monitor data's progress through a pipe
   - wget
@@ -131,6 +126,7 @@ homebrew_installed_packages:
   - rbenv
   - zsh-syntax-highlighting
   - zsh-autosuggestions
+  # - pngpaste                   # Paste PNG into files
   # - wrk                        # HTTP benchmarking tool
   # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
   # - nmap
@@ -150,6 +146,7 @@ homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - "logi-options\\+"
   - 1password                         # Requires additional configuration
   - google-chrome
   - firefox
@@ -163,7 +160,6 @@ homebrew_cask_apps:
   - tg-pro                            # Manual configuration required at first app launch (check README.md)
   - mos                               # com.apple.quarantine xattr removed, default settings applied
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
-  - logi-options+
   - obsidian                          # Application configurations always stored in the vault
   - spotify
   - qbittorrent                       # com.apple.quarantine xattr removed

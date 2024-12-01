@@ -27,9 +27,6 @@ export COLIMA_VM="default"
 export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
 export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
 
-# McFly
-eval "$(mcfly init zsh)"
-
 # 1Password ssh agent
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
@@ -37,12 +34,25 @@ export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agen
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # Use bat instead of cat
-# Save the original system `cat` under `rcat`
 alias rcat="$(which cat)"
 
 alias cat="$(which bat)"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
+export BAT_THEME="ansi-dark"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+" --height 50% --layout reverse --border --no-mouse"\
+" --color=bg:0,fg:7,hl:3"\
+" --color=bg+:8,fg+:7,hl+:11"\
+" --color=info:3,border:3,prompt:4"\
+" --color=pointer:0,marker:9,spinner:9,header:1"
+
+FD_OPTIONS="--follow --exclude .git --exclude node_modules"
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # Zsh syntax highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
