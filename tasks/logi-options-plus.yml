@@ -1,0 +1,5 @@
+---
+# Temporary workaround to install logi-options+ brew cask
+- name: Install logi-options+ brew cask
+  ansible.builtin.command:
+    cmd: "brew install --cask logi-options+"

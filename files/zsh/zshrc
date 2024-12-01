@@ -30,6 +30,9 @@ export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
 # 1Password ssh agent
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
+# 1Password completions
+# eval "$(op completion zsh)"; compdef _op op
+
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 

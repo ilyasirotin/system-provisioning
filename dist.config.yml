@@ -146,7 +146,7 @@ homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - "logi-options\\+"
+  # - "logi-options+"                 # Can not be installed this way due to bug in the ansible collection
   - 1password                         # Requires additional configuration
   - google-chrome
   - firefox
@@ -258,4 +258,5 @@ github_ssh_key_type: "ed25519"
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/screenshots.yml
+  - tasks/logi-options-plus.yml
   - tasks/clean.yml

@@ -4,6 +4,7 @@
     cmd: "command -v nvm"
   register: nvm_status
   failed_when: false
+  changed_when: false
 
 - name: Install NVM
   when: nvm_status.rc != 0
