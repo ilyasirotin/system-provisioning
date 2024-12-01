@@ -1,5 +1,30 @@
 # MacOS initial setup guide
 
+## Prerequisites
+
+### Install requirements
+```shell
+xcode-select --install
+sudo xcodebuild -license
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
+```
+
+### Get ansible
+```shell
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
+rm get-pip.py
+sudo pip3 install --ignore-installed ansible
+```
+
+### Run playbook
+```shell
+git clone https://<PAT>@github.com/ilyasirotin/ansible-osx-setup.git
+chmod +x apply && ./apply
+```
+
+## Checklists
+
 ### Security & Privacy Initial Setup
 - [ ] Enable FileVault disk encryption
 - [ ] Configure Touch ID (add multiple fingerprints)
@@ -12,7 +37,7 @@
 - [ ] Set up iCloud Drive
 - [ ] Login in AppStore (required by mas)
 
-### System settings checklist
+### System settings
 - **Network:**
   - [ ] Firewall -> Options... - Check settings
 - **Battery:**
@@ -91,8 +116,6 @@
   - [ ] Click -> Light
   - [ ] Quiet Click -> Enabled
 
-## Applications
-
 [](#aldente)
 ### Aldente
 - [ ] Accept helper installation on first launch
@@ -105,7 +128,7 @@
 ### TG Pro
 - [ ] Activate license on first launch
 
-# Useful system shortcuts
+## Useful system shortcuts
 
 ### System
 - **⌘ + Option + Esc** -> Force Quit

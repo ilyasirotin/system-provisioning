@@ -4,6 +4,6 @@
     name: symlink
   vars:
     symlink_src: "{{ playbook_dir }}/files/{{ item }}"
-    symlink_dst: "{{ ansible_env.HOME }}/.{{ item }}"
+    symlink_dst: "{{ ansible_user_dir }}/.{{ item }}"
   loop:
     - "vimrc"

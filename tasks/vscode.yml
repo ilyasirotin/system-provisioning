@@ -25,11 +25,11 @@
     name: symlink
   vars:
     symlink_src: "{{ playbook_dir }}/files/vscode/vscode-settings.json"
-    symlink_dst: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+    symlink_dst: "{{ ansible_user_dir }}/Library/Application Support/Code/User/settings.json"
 
 - name: Link vscode keybindings.json file
   ansible.builtin.include_role:
     name: symlink
   vars:
     symlink_src: "{{ playbook_dir }}/files/vscode/vscode-keybindings.json"
-    symlink_dst: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/keybindings.json"
+    symlink_dst: "{{ ansible_user_dir }}/Library/Application Support/Code/User/keybindings.json"

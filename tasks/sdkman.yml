@@ -1,0 +1,23 @@
+---
+- name: Check sdkman already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.sdkman/bin/sdkman-init.sh"
+  register: sdkman_status
+
+- name: Install sdkman
+  when: not sdkman_status.stat.exists
+  block:
+    - name: Download sdkman installation script
+      ansible.builtin.get_url:
+        url: "https://get.sdkman.io"
+        dest: "{{ ansible_user_dir }}/sdkman"
+        mode: "0755"
+
+    - name: Run sdkman installation script
+      ansible.builtin.command:
+        cmd: "{{ ansible_user_dir }}/sdkman"
+
+    - name: Remove temporary files
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/sdkman"
+        state: absent

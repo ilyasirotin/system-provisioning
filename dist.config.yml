@@ -4,14 +4,14 @@ macos_hostname: "macbook-pro"
 macos_computer_name: "MacBook Pro"
 
 # MacOS screenshots
-macos_screenshots_dir: "{{ ansible_env.HOME }}/Documents/Screenshots"
+macos_screenshots_dir: "{{ ansible_user_dir }}/Documents/Screenshots"
 macos_screenshots_type: "png"
 
 # Path to common shell scripts
 scripts_dir: "{{ playbook_dir }}/scripts"
 
 # Zsh configs
-zsh_completions_dir: "{{ ansible_env.HOME }}/.zsh/completions"
+zsh_completions_dir: "{{ ansible_user_dir }}/.zsh/completions"
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
@@ -127,6 +127,10 @@ homebrew_installed_packages:
   - docker-compose
   - docker-buildx
   - docker-credential-helper
+  - pyenv
+  - rbenv
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
   # - wrk                        # HTTP benchmarking tool
   # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
   # - nmap
@@ -257,8 +261,5 @@ github_ssh_key_type: "ed25519"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
-  - tasks/ssh.yml
-  - tasks/github.yml
-  - tasks/dotfiles.yml
   - tasks/screenshots.yml
   - tasks/clean.yml

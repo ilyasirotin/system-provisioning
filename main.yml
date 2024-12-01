@@ -32,13 +32,31 @@
       tags: ['vscode']
 
     - ansible.builtin.import_tasks: tasks/zsh.yml
-      tags: ['shell']
+      tags: ['shell', 'zsh']
 
     - ansible.builtin.import_tasks: tasks/xattr.yml
       tags: ['xattr']
 
     - ansible.builtin.import_tasks: tasks/colima.yml
       tags: ['colima']
+
+    - ansible.builtin.import_tasks: tasks/github.yml
+      tags: ['github']
+
+    - ansible.builtin.import_tasks: tasks/ssh.yml
+      tags: ['ssh']
+
+    - ansible.builtin.import_tasks: tasks/dotfiles.yml
+      tags: ['dotfiles']
+
+    - ansible.builtin.import_tasks: tasks/github.yml
+      tags: ['github']
+
+    - ansible.builtin.import_tasks: tasks/sdkman.yml
+      tags: ['devtools', 'sdkman']
+
+    - ansible.builtin.import_tasks: tasks/nvm.yml
+      tags: ['devtools', 'nvm']
 
     - name: Include defaults configuration task
       ansible.builtin.include_tasks:

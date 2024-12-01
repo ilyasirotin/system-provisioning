@@ -31,17 +31,6 @@
 [commit]
   gpgsign = {{ git_sign_commit | default(false) }}
 
-[alias]
-  s = status
-  bl = branch -l
-  c = commit
-  ca = commit -a
-  cm = commit -m
-  cam = commit -am
-  d = diff
-  dc = diff --cached
-  l = "log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
-
 {% if git_github_token is defined %}
 [url "https://{{ git_github_token }}@github.com/"]
   insteadOf = https://github.com/

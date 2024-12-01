@@ -1,0 +1,43 @@
+---
+- name: Get the path to ZSH
+  ansible.builtin.command:
+    cmd: which zsh
+  become: false
+  register: zsh_path
+
+- name: Ensure homebrew zsh is in allowed shells
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: "{{ zsh_path.stdout }}"
+  become: true
+
+- name: Set ZSH as the default shell
+  ansible.builtin.shell:
+    cmd: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
+  become: true
+
+- name: Create completion scripts directory
+  ansible.builtin.file:
+    path: "{{ zsh_completions_dir }}"
+    state: directory
+
+- name: Link zsh configs
+  ansible.builtin.include_role:
+    name: symlink
+  vars:
+    symlink_src: "{{ playbook_dir }}/files/zsh/{{ item }}"
+    symlink_dst: "{{ ansible_user_dir }}/.{{ item }}"
+  loop:
+    - zprofile
+    - zshrc
+
+- name: Link zsh imports
+  ansible.builtin.include_role:
+    name: symlink
+  vars:
+    symlink_src: "{{ playbook_dir }}/files/zsh/imports/{{ item }}"
+    symlink_dst: "{{ ansible_user_dir }}/.zsh_{{ item }}"
+  loop:
+    - aliases
+    - exports
+    - functions
