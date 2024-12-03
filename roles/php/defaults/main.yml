@@ -1,0 +1,43 @@
+---
+php_versions:
+  - "7.4"
+  - "8.4"
+
+php_default_version: "{{ php_versions | last }}"
+
+# common
+php_post_max_size: 16M
+php_max_execution_time: 60
+php_memory_limit: 512M
+php_error_reporting: E_ALL
+php_display_errors: "On"
+php_display_startup_errors: "On"
+php_timezone: Asia/Bishkek
+php_session_save_path: /var/tmp
+
+# opcache
+php_opcache_enable: "1"
+php_opcache_enable_cli: "0"
+php_opcache_max_accelerated_files: "20000"
+php_opcache_memory_consumption: "256"
+php_opcache_validate_timestamps: "1"
+php_opcache_revalidate_freq: "0"
+
+# xdebug
+php_xdebug_mode: debug,coverage
+php_xdebug_cli_color: "1"
+
+# PECL
+php_pecl_brews:
+  - amqp
+  - imagick
+  - mongodb
+  - rdkafka
+  - redis
+  - xdebug
+
+php_pecl_dependencies:
+  - mpdecimal
+
+php_pecl_extensions:
+  - {name: decimal, version: 1.5.0, envs: {LIBMPDEC_DIR: "/opt/homebrew/lib", LIBMPDEC_INC: "/opt/homebrew/include"}}

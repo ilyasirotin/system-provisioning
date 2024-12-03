@@ -1,0 +1,57 @@
+---
+- name: Print default PHP version
+  ansible.builtin.debug:
+    var: php_default_version
+
+- name: Ensure required taps are added
+  community.general.homebrew_tap:
+    tap: "{{ item }}"
+    state: present
+  loop:
+    - shivammathur/php
+    - shivammathur/extensions
+  notify:
+    - Clear homebrew cache
+
+- name: Install PHP versions
+  community.general.homebrew:
+    name: "shivammathur/php/php@{{ item }}"
+    state: present
+  loop: "{{ php_versions }}"
+  notify:
+    - Clear homebrew cache
+
+- name: Install composer
+  community.general.homebrew:
+    name: composer
+    state: present
+  notify:
+    - Clear homebrew cache
+
+- name: Create log directory
+  ansible.builtin.file:
+    dest: "{{ homebrew_prefix }}/var/log/php/{{ item }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ php_versions }}"
+
+- name: Copy PHP configuration in place
+  ansible.builtin.template:
+    src: php.ini.j2
+    dest: "{{ homebrew_prefix }}/etc/php/{{ item }}/php.ini"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+    mode: "0644"
+  loop: "{{ php_versions }}"
+
+- name: Install PECL extensions via brew
+  ansible.builtin.include_tasks: pecl-brewed.yml
+  loop: "{{ php_versions }}"
+  loop_control:
+    loop_var: php_version
+
+- name: Install PECL extensions manually
+  ansible.builtin.include_tasks: pecl-custom.yml
+  loop: "{{ php_versions }}"
+  loop_control:
+    loop_var: php_version

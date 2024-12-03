@@ -1,0 +1,41 @@
+---
+- name: Install PECL dependencies
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ php_pecl_dependencies }}"
+  notify:
+    - Clear homebrew cache
+  run_once: true
+
+- name: Ensure PECL directory exists
+  ansible.builtin.file:
+    dest: "{{ homebrew_prefix }}/lib/php/pecl"
+    state: directory
+    mode: "0755"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+  become: true
+  run_once: true
+
+- name: Get installed PHP locations
+  ansible.builtin.find:
+    paths: "{{ homebrew_prefix }}/Cellar/php{{ (php_version != php_default_version) | ternary('@' ~ php_version, '') }}"
+    file_type: directory
+  register: php_installation_locations
+
+- name: Latest installed PHP location
+  ansible.builtin.set_fact:
+    php_installation_location: "{{ php_installation_locations.files | sort(reverse=true) | first }}"
+
+- name: Get extension directory
+  ansible.builtin.command:
+    cmd: "{{ php_installation_location.path }}/bin/php -r 'echo ini_get(\"extension_dir\");'"
+  register: php_pecl_extension_dir
+  changed_when: php_pecl_extension_dir.rc != 0
+
+- name: Install PECL extension
+  ansible.builtin.include_tasks: pecl-custom-extension.yml
+  loop: "{{ php_pecl_extensions }}"
+  loop_control:
+    loop_var: php_pecl_extension

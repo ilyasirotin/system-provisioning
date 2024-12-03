@@ -20,3 +20,40 @@ function denter() {
  docker exec -it "$1" bash
  return 0
 }
+
+# Change php version
+function phpv() {
+  local version="$1"
+
+  if [[ -z "$version" ]]; then
+    echo "Usage: phpv <version>"
+    return 1
+  fi
+
+  if ! brew list --formula | grep -q "^php@$version\$"; then
+    echo "PHP $version is not installed"
+    return 1
+  fi
+
+  local current_version
+  current_version=$(php -v | head -n 1 | awk '{split($2, ver, "."); print ver[1]"."ver[2]}')
+
+  if [ "$version" == "$current_version" ]; then
+    echo "PHP version is already switched to $current_version";
+    return 1;
+  fi
+
+  echo "Unlinking PHP $current_version..."
+  brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
+  
+  echo "Linking PHP $version..."
+  if ! brew link --overwrite --force php@"$version" &> /dev/null; then
+    echo "Unable to link PHP $version"
+    return 1
+  fi
+
+  local switched_version
+  switched_version=$(php -v | head -n 1 | awk '{print $2}')
+  echo "PHP version changed to $switched_version"; echo;
+  php -v
+}

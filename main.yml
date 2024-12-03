@@ -25,6 +25,8 @@
       tags: ['dnsmasq']
     - role: git
       tags: ['git']
+    - role: php
+      tags: ['php']
 
   tasks:
     - ansible.builtin.import_tasks: tasks/vscode.yml
@@ -71,6 +73,7 @@
 
     - name: Run post-provision task files
       tags: ['post']
+      notify: Clear homebrew cache
       block:
         - name: Run configured post-provision ansible task files
           ansible.builtin.include_tasks: "{{ outer_item }}"
