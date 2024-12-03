@@ -8,7 +8,8 @@ export CLICOLOR_FORCE=1
 
 # Custom prompt
 autoload -U colors && colors
-PS1="%F{green}%n%f@%F{yellow}%m%f %F{cyan}%~%f $%f "
+NL=$'\n'
+PS1="%F{green}%n%f@%F{yellow}%m%f %F{cyan}%~%f${NL}>%f "
 
 # Don't require escaping globbing characters in zsh.
 unsetopt nomatch
@@ -29,6 +30,9 @@ export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
 
 # 1Password ssh agent
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+# 1Password plugins
+source ~/.config/op/plugins.sh
 
 # 1Password completions
 # eval "$(op completion zsh)"; compdef _op op

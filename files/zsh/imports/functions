@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Delete a given line number in the known_hosts file
-knownrm() {
+function knownrm() {
  re='^[0-9]+$'
  if ! [[ $1 =~ $re ]] ; then
    echo "error: line number missing" >&2;
@@ -19,26 +19,4 @@ function denter() {
 
  docker exec -it "$1" bash
  return 0
-}
-
-# Run php composer inside docker container
-composer() {
-    docker run \
-      --rm \
-      --interactive \
-      --tty \
-      -v "$(pwd):/app" \
-      -v "$COMPOSER_HOME:/tmp" \
-      -e COMPOSER_HOME="$COMPOSER_HOME" composer/composer "$@"
-}
-
-# Run php inside docker container
-php() {
-    docker run \
-      --rm \
-      --interactive \
-      --tty \
-      -v "$(pwd):/app" \
-      -w /app \
-      -p 8080:8080 php:"${PHP_VERSION}"-cli php "$@"
 }
