@@ -1,0 +1,11 @@
+---
+- name: Ensure iterm2 installed
+  community.general.homebrew_cask:
+    name: "iterm2"
+    state: present
+
+- name: Load iterm2 shell integration script
+  ansible.builtin.get_url:
+    url: "https://iterm2.com/shell_integration/zsh"
+    dest: "{{ ansible_user_dir }}/.iterm2_shell_integration.zsh"
+    mode: "0755"

@@ -76,7 +76,6 @@ dockitems_persist:
 
 homebrew_cask_accept_external_apps: true
 homebrew_upgrade_all_packages: true
-homebrew_clear_cache: true
 
 homebrew_installed_packages:
   - autoconf
@@ -89,7 +88,6 @@ homebrew_installed_packages:
   - dnsmasq                    # Lightweight DNS forwarder and DHCP server
   - fzf                        # Command-line fuzzy finder written in Go
   - fd
-  - gnu-time
   - htop
   - rcm                        # RC file (dotfile) management
   - readline                   # Library for command-line editing
@@ -109,7 +107,6 @@ homebrew_installed_packages:
   - tree
   - bat                        # Clone of cat(1) with syntax highlighting and Git integration
   - tldr                       # Simplified and community-driven man pages
-  - jq
   - ncdu                       # NCurses Disk Usage
   - dive                       # Tool for exploring each layer in a docker image
   - gh
@@ -172,7 +169,7 @@ homebrew_cask_apps:
   - xnconvert
   - postman
   - foxitreader
-  # - docker
+  - docker
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -261,3 +258,5 @@ github_ssh_key_type: "ed25519"
 post_provision_tasks:
   - tasks/screenshots.yml
   - tasks/logi-options-plus.yml
+  - tasks/iterm2.yml
+  - tasks/1password.yml

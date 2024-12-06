@@ -116,6 +116,17 @@ chmod +x apply && ./apply
   - [ ] Click -> Light
   - [ ] Quiet Click -> Enabled
 
+### 1Password
+- [ ] Login on first launch
+- [ ] [Turn on SSH Agent](https://developer.1password.com/docs/ssh/get-started/):
+  - [ ] 1Password -> Settings -> Developer -> Use the SSH Agent
+- [ ] Review common settings
+- [ ] [Integrate with 1Password CLI](https://developer.1password.com/docs/cli/get-started/):
+  - [ ] 1Password -> Settings -> Developer -> Integrate with 1Password CLI
+  - [ ] Check CLI integration works correctly
+  - [ ] [Enable ngrok plugin](https://developer.1password.com/docs/cli/shell-plugins/ngrok/)
+  - [ ] [Enable GitHub plugin](https://developer.1password.com/docs/cli/shell-plugins/github/)
+
 [](#aldente)
 ### Aldente
 - [ ] Accept helper installation on first launch
@@ -128,13 +139,47 @@ chmod +x apply && ./apply
 ### TG Pro
 - [ ] Activate license on first launch
 
+### iTerm2
+- **Change settings folder location on first run:**
+  - [ ] Settings -> General -> Settings:
+    - [ ] Set path to `iCloud Drive/Configurations/iTerm2`
+    - [ ] Change **"Save changes"** seting to **"When Quitting"**
+    - [ ] Review imported settings
+    - [ ] Check shell integration work
+
+### Launchcontrol
+- [ ] Activate license on first launch
+
+### JetBrains Toolbox
+- [ ] Login on to jetbrains account on first launch
+- [ ] Install IDEs
+- [ ] [Launch IDEs and sync settings](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync):
+  - [ ] `⌘ + ,` -> Backup and Sync -> Enable Backup and Sync -> Check all -> Get Settings from Account
+
+### Obsidian
+- [ ] Pull vault repository from GitHub
+- [ ] Open vault
+
+### CrossOver
+- [ ] Login to account on first launch
+- [ ] Install WinBox
+
+### Docker
+- [ ] Login to docker hub on first launch
+- [ ] Review docker desktop settings
+
+### Logi Options+
+- [ ] Login to account on first launch
+- [ ] Restore device settings from the last backup
+- [ ] Disable AI Prompt builder
+
 ## Useful system shortcuts
 
 ### System
-- **⌘ + Option + Esc** -> Force Quit
+- `⌘ + Option + Esc` -> Force Quit
 
 ### Finder
-- **⌘ + Shift + G** -> Go to folder (you can paste any path)
-- **⌘ + Shift + H** -> Open Home directory
-- **⌘ + Shift + D** -> Desktop
-- **⌘ + Shift + O** -> Documents
+- `⌘ + Shift + G` -> Go to folder (you can paste any path)
+- `⌘ + Shift + H` -> Open Home directory
+- `⌘ + Shift + D` -> Desktop
+- `⌘ + Shift + O` -> Documents
