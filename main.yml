@@ -42,8 +42,8 @@
     #  - ansible.builtin.import_tasks: tasks/colima.yml
     #   tags: ['colima']
 
-    # - ansible.builtin.import_tasks: tasks/github.yml
-    #   tags: ['github']
+    - ansible.builtin.import_tasks: tasks/github.yml
+      tags: ['github']
 
     - ansible.builtin.import_tasks: tasks/ssh.yml
       tags: ['ssh']
