@@ -119,6 +119,10 @@ ansible-playbook main.yml --ask-become-pass
   - [ ] Click -> Light
   - [ ] Quiet Click -> Enabled
 
+### Finder
+- [ ] Review side bar folders
+- [ ] Ensure iCloud sync is enabled
+
 ### 1Password
 - [ ] Login on first launch
 - [ ] [Turn on SSH Agent](https://developer.1password.com/docs/ssh/get-started/):
