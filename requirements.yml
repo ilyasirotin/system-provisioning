@@ -1,5 +1,8 @@
 ---
 collections:
   - name: community.general
+    version: "*"
   - name: community.crypto
+    version: "*"
   - name: geerlingguy.mac
+    version: "*"

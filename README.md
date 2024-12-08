@@ -5,16 +5,15 @@
 ### Install requirements
 ```shell
 xcode-select --install
+# Install XCode from AppStore manually to be able to agree with license
 sudo xcodebuild -license
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 ```
 
 ### Get ansible
 ```shell
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
-rm get-pip.py
-sudo pip3 install --ignore-installed ansible
+sudo pip3 install --upgrade pip
+sudo pip3 install ansible
 ```
 
 ### Run playbook
@@ -23,6 +22,7 @@ git clone https://<PAT>@github.com/ilyasirotin/ansible-osx-setup.git
 
 ansible-galaxy install -r requirements.yml
 cp dist.config.yml config.yml
+# Review config.yml values before starting playbook
 ansible-playbook main.yml --ask-become-pass
 ```
 
@@ -180,6 +180,12 @@ ansible-playbook main.yml --ask-become-pass
 - [ ] Restore device settings from the last backup
 - [ ] Disable AI Prompt builder
 
+### Mos
+- [ ] Set "Launch at login" after installation
+
+### NTFS For Mac
+- [ ] Follow official installation guide
+
 ## Useful system shortcuts
 
 ### System
@@ -190,3 +196,6 @@ ansible-playbook main.yml --ask-become-pass
 - `⌘ + Shift + H` -> Open Home directory
 - `⌘ + Shift + D` -> Desktop
 - `⌘ + Shift + O` -> Documents
+
+## TODO:
+- [ ] Start apps in `defaults.yml` task after installation for the first time before applying settings

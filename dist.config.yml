@@ -143,6 +143,7 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   # - "logi-options+"                 # Can not be installed this way due to bug in the ansible collection
   - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
+  - 1password
   - google-chrome
   - firefox
   - ngrok
