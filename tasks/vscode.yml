@@ -1,4 +1,9 @@
 ---
+- name: Ensure VSCode already installed
+  community.general.homebrew_cask:
+    name: visual-studio-code
+    state: present
+
 - name: Check for vscode
   ansible.builtin.command: "code --version"
   register: vscode_installed

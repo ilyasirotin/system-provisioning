@@ -1,9 +1,0 @@
-#!/bin/sh
-
-ansible-galaxy install -r requirements.yml
-
-if [ ! -e "./config.yml" ]; then
-  cp dist.config.yml config.yml
-fi
-
-ansible-playbook main.yml --ask-become-pass

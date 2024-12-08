@@ -20,7 +20,10 @@ sudo pip3 install --ignore-installed ansible
 ### Run playbook
 ```shell
 git clone https://<PAT>@github.com/ilyasirotin/ansible-osx-setup.git
-chmod +x apply && ./apply
+
+ansible-galaxy install -r requirements.yml
+cp dist.config.yml config.yml
+ansible-playbook main.yml --ask-become-pass
 ```
 
 ## Checklists

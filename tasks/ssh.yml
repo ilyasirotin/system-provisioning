@@ -1,9 +1,8 @@
 ---
 - name: Check .ssh folder exist
-  ansible.builtin.stat:
+  ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.ssh"
-  register: ssh_dir_stat
-  changed_when: false
+    state: directory
 
 - name: Link ssh config
   ansible.builtin.include_role:
@@ -11,4 +10,3 @@
   vars:
     symlink_src: "{{ playbook_dir }}/files/ssh-config"
     symlink_dst: "{{ ansible_user_dir }}/.ssh/config"
-  when: ssh_dir_stat.stat.exists and ssh_dir_stat.stat.isdir

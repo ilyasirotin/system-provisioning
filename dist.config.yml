@@ -108,15 +108,15 @@ homebrew_installed_packages:
   - bat                        # Clone of cat(1) with syntax highlighting and Git integration
   - tldr                       # Simplified and community-driven man pages
   - ncdu                       # NCurses Disk Usage
-  - dive                       # Tool for exploring each layer in a docker image
+  - 1password-cli
   - gh
   - shellcheck
   - sha2
   - font-cascadia-code
   - font-fira-code
   - font-ibm-plex-mono
-  - 1password-cli
   - docker-credential-helper
+  - dive                       # Tool for exploring each layer in a docker image
   - pyenv
   - rbenv
   - zsh-syntax-highlighting
@@ -142,11 +142,10 @@ homebrew_taps: []
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   # - "logi-options+"                 # Can not be installed this way due to bug in the ansible collection
-  - 1password                         # Requires additional configuration
+  - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
   - google-chrome
   - firefox
-  - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
-  - ngrok                             # Requires additional configuration
+  - ngrok
   - telegram
   - visual-studio-code
   - vlc
