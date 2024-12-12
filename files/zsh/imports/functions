@@ -49,7 +49,11 @@ function phpv() {
 
   # Get the current PHP version
   local current_version
-  current_version=$(php -v | head -n 1 | awk '{split($2, ver, "."); print ver[1]"."ver[2]}')
+  if command -v php &> /dev/null; then
+    current_version=$(php -v | head -n 1 | awk '{split($2, ver, "."); print ver[1]"."ver[2]}')
+  else
+    current_version=""
+  fi
 
   if [[ "$version" == "$current_version" ]]; then
     echo "PHP version is already switched to $current_version"
@@ -58,7 +62,10 @@ function phpv() {
 
   # Unlink the current PHP version
   echo "Unlinking PHP $current_version..."
-  brew unlink php &> /dev/null || brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
+  if [[ -n "$current_version" ]]; then
+    # brew unlink php &> /dev/null || brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
+    brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
+  fi
 
   # Link the requested PHP version
   echo "Linking PHP $version..."
@@ -67,10 +74,17 @@ function phpv() {
     return 1
   fi
 
-  # Confirm the new PHP version
-  local switched_version
-  switched_version=$(php -v | head -n 1 | awk '{print $2}')
-  echo "PHP version changed to $switched_version"
-  php -v
-}
+  # Refresh shell environment
+  hash -r
 
+  # Confirm the new PHP version
+  if command -v php &> /dev/null; then
+    local switched_version
+    switched_version=$(php -v | head -n 1 | awk '{print $2}')
+    echo "PHP version changed to $switched_version"
+    php -v
+  else
+    echo "PHP command is not available after switching to $version"
+    return 1
+  fi
+}
