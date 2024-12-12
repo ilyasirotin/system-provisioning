@@ -18,10 +18,12 @@ defaults write -app "TG Pro" showTemp2InMenuBar -int 0
 
 defaults write -app "TG Pro" useSmallerMenuFont -int 1
 
-defaults write -app "TG Pro" limitForHighestCPU -int 85
+defaults write -app "TG Pro" limitForHighestCPU -int 90
 
-defaults write -app "TG Pro" limitForSpecificArea -int 85
+defaults write -app "TG Pro" limitForSpecificArea -int 90
 
 defaults write -app "TG Pro" showHighestCPUAlerts -int 1
+
+defaults write -app "TG Pro" playSoundForNotifications -int 1
 
 defaults write -app "TG Pro" soundForNotifications -string Sosumi

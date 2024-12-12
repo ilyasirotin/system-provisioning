@@ -21,7 +21,7 @@ function denter() {
  return 0
 }
 
-# Change php version
+# Change PHP version
 function phpv() {
   local version="$1"
 
@@ -30,30 +30,47 @@ function phpv() {
     return 1
   fi
 
-  if ! brew list --formula | grep -q "^php@$version\$"; then
+  # Detect the formula name
+  local formula_name="php@$version"
+  if brew list --formula | grep -q "^php\$"; then
+    # Handle versions installed as 'php' (e.g., latest stable version)
+    local installed_version
+    installed_version=$(brew info php --json | jq -r '.[0].versions.stable' 2>/dev/null | awk -F. '{print $1"."$2}')
+    if [[ "$installed_version" == "$version" ]]; then
+      formula_name="php"
+    fi
+  fi
+
+  # Check if the version is installed
+  if ! brew list --formula | grep -q "^$formula_name\$"; then
     echo "PHP $version is not installed"
     return 1
   fi
 
+  # Get the current PHP version
   local current_version
   current_version=$(php -v | head -n 1 | awk '{split($2, ver, "."); print ver[1]"."ver[2]}')
 
-  if [ "$version" == "$current_version" ]; then
-    echo "PHP version is already switched to $current_version";
-    return 1;
+  if [[ "$version" == "$current_version" ]]; then
+    echo "PHP version is already switched to $current_version"
+    return 0
   fi
 
+  # Unlink the current PHP version
   echo "Unlinking PHP $current_version..."
-  brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
-  
+  brew unlink php &> /dev/null || brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
+
+  # Link the requested PHP version
   echo "Linking PHP $version..."
-  if ! brew link --overwrite --force php@"$version" &> /dev/null; then
+  if ! brew link --overwrite --force "$formula_name" &> /dev/null; then
     echo "Unable to link PHP $version"
     return 1
   fi
 
+  # Confirm the new PHP version
   local switched_version
   switched_version=$(php -v | head -n 1 | awk '{print $2}')
-  echo "PHP version changed to $switched_version"; echo;
+  echo "PHP version changed to $switched_version"
   php -v
 }
+

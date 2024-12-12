@@ -4,4 +4,3 @@ export LANG=en_US.UTF-8
 
 # PHP
 export COMPOSER_HOME=$HOME/.composer
-export PHP_VERSION=8.3

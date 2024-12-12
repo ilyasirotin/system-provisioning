@@ -83,5 +83,6 @@
         120
     ],
     "explorer.confirmDelete": false,
-    "editor.accessibilitySupport": "off"
+    "editor.accessibilitySupport": "off",
+    "redhat.telemetry.enabled": false
 }

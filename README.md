@@ -20,7 +20,7 @@ sudo pip3 install ansible
 ```shell
 git clone https://<PAT>@github.com/ilyasirotin/ansible-osx-setup.git
 
-ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r requirements.yml -f
 cp dist.config.yml config.yml
 # Review config.yml values before starting playbook
 ansible-playbook main.yml --ask-become-pass
@@ -54,6 +54,8 @@ ansible-playbook main.yml --ask-become-pass
   - **Language & Region:**
     - [ ] First day of week -> Monday
     - [ ] Date format -> 19/08/2024
+  - **AutoFill & Passwords:**
+    - [ ] AutoFill from -> Passwords -> disable
 - **Appearance:**
   - [ ] Appearance -> Light
 - **Apple Intelligence & Siri:**
@@ -72,7 +74,7 @@ ansible-playbook main.yml --ask-become-pass
   - [ ] Solar Gradients
   - [ ] Show on all Spaces -> enable
 - **Sound:**
-  - [ ] Alert sound -> Bubble
+  - [ ] Alert sound -> Pebble
   - [ ] Play feedback when volume is changed -> enable
 - **Lock Screen:**
   - [ ] Start Screen Saver when inactive -> For 10 minutes
@@ -110,12 +112,12 @@ ansible-playbook main.yml --ask-become-pass
   - [ ] Turn keyboard backlight off after inactivity -> 1 minute
   - [ ] Press 🌐 key to -> Change Input Source
 - **Mouse:**
-  - [ ] Tracking speed -> 6
+  - [ ] Tracking speed -> 5
   - [ ] Natural scrolling -> on
-  - [ ] Double-Click Speed -> 10
+  - [ ] Double-Click Speed -> 8
   - [ ] Scrolling Speed -> 5
 - **Trackpad:**
-  - [ ] Tracking speed -> 6
+  - [ ] Tracking speed -> 5
   - [ ] Click -> Light
   - [ ] Quiet Click -> Enabled
 

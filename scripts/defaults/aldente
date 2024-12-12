@@ -30,6 +30,8 @@ defaults write -app "Aldente" showPercentagePopover -int 1
 
 defaults write -app "Aldente" sleepInhibitCharge -int 1
 
+defaults write -app "Aldente" showGUIonStartup -int 0
+
 defaults write -app "Aldente" uiCollapseState -dict-add \
   "bi_batteryhealth" -int 1   \
   "bi_batteryspecs" -int 1    \

@@ -118,9 +118,12 @@ homebrew_installed_packages:
   - docker-credential-helper
   - dive                       # Tool for exploring each layer in a docker image
   - pyenv
+  - pyenv-virtualenv
   - rbenv
   - zsh-syntax-highlighting
   - zsh-autosuggestions
+  - sqlite3
+  - tcl-tk@8
   # - pngpaste                   # Paste PNG into files
   # - wrk                        # HTTP benchmarking tool
   # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
@@ -148,6 +151,7 @@ homebrew_cask_apps:
   - firefox
   - ngrok
   - telegram
+  - whatsapp
   - visual-studio-code
   - vlc
   - launchcontrol

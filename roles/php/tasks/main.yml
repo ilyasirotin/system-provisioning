@@ -10,23 +10,19 @@
   loop:
     - shivammathur/php
     - shivammathur/extensions
-  notify:
-    - Clear homebrew cache
 
 - name: Install PHP versions
   community.general.homebrew:
     name: "shivammathur/php/php@{{ item }}"
     state: present
   loop: "{{ php_versions }}"
-  notify:
-    - Clear homebrew cache
 
 - name: Install composer
-  community.general.homebrew:
-    name: composer
-    state: present
-  notify:
-    - Clear homebrew cache
+  ansible.builtin.get_url:
+    url: "https://getcomposer.org/download/latest-stable/composer.phar"
+    dest: "/usr/local/bin/composer"
+    mode: "0755"
+  become: true
 
 - name: Create log directory
   ansible.builtin.file:

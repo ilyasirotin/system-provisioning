@@ -4,5 +4,3 @@
     name: "{{ item }}@{{ php_version }}"
     state: present
   loop: "{{ php_pecl_brews }}"
-  notify:
-    - Clear homebrew cache
