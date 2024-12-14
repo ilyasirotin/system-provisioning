@@ -63,8 +63,7 @@ function phpv() {
   # Unlink the current PHP version
   echo "Unlinking PHP $current_version..."
   if [[ -n "$current_version" ]]; then
-    # brew unlink php &> /dev/null || brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
-    brew unlink php@"$current_version" &> /dev/null || echo "Unable to unlink PHP $current_version"
+    brew unlink php@"$current_version" &> /dev/null || brew unlink php &> /dev/null || echo "Unable to unlink PHP $current_version"
   fi
 
   # Link the requested PHP version
