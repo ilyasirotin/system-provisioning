@@ -6,9 +6,6 @@ alias la="ls -lhaF"
 # Show xattr
 alias lx="ls -@la"
 
-# Docker
-alias dvpurge="docker volume rm \$(docker volume ls -qf dangling=true)"
-
 # Git aliases
 alias gs="git status"
 alias gc="git commit"
@@ -20,6 +17,9 @@ alias mann="tldr"
 
 # docker
 alias dvpurge="docker volume rm \$(docker volume ls -qf dangling=true)"
+alias dvls="docker volume ls"
+alias dnls="docker network ls"
+alias dpsa="docker ps -a"
 
 # zsh
 alias zshcc="rm ~/.zcompdump && autoload -Uz compinit && compinit"

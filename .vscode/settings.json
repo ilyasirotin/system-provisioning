@@ -1,5 +1,5 @@
 {
-    "ansible.python.interpreterPath": "/usr/bin/python3",
+    "ansible.python.interpreterPath": "/Users/ilya/Git/ansible-osx-setup/.venv/bin/python",
     "ansible.ansible.useFullyQualifiedCollectionNames": true,
     "files.associations": {
         "*.yml": "ansible",

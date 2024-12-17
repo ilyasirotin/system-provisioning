@@ -75,7 +75,7 @@
     "git.autofetch": true,
     "oneDarkPro.vivid": true,
     "oneDarkPro.italic": true,
-    "editor.fontFamily": "Menlo, Monaco, 'Cascadia Code', 'Fira Code', 'IBM Plex Mono', monospace",
+    "editor.fontFamily": "'Fira Code', Monaco, Menlo, 'Cascadia Code', 'IBM Plex Mono', monospace",
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
     "editor.fontWeight": "normal",
     "editor.fontSize": 12,
@@ -95,5 +95,6 @@
             "strings": true
         },
         "editor.autoIndent": "advanced"
-    }
+    },
+    "security.workspace.trust.untrustedFiles": "open"
 }
