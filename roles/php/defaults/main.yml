@@ -6,8 +6,12 @@ php_versions:
 
 php_default_version: "{{ php_versions | last }}"
 
+# composer
+php_install_composer: true
+
 # common
-php_post_max_size: 16M
+php_post_max_size: 128M
+php_upload_max_filesize: 64M
 php_max_execution_time: 60
 php_memory_limit: 512M
 php_error_reporting: E_ALL
