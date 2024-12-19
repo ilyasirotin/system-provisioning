@@ -26,7 +26,7 @@
 
 - name: Latest installed PHP location
   ansible.builtin.set_fact:
-    php_installation_location: "{{ php_installation_locations.files | sort(reverse=true) | first }}"
+    php_installation_location: "{{ php_installation_locations.files | sort(attribute='path', reverse=true) | first }}"
 
 - name: Get extension directory
   ansible.builtin.command:
