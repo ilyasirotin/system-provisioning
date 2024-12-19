@@ -17,12 +17,18 @@
     state: present
   loop: "{{ php_versions }}"
 
+- name: Check composer already installed
+  ansible.builtin.stat:
+    path: "/usr/local/bin/composer"
+  register: composer_bin
+
 - name: Install composer
   ansible.builtin.get_url:
     url: "https://getcomposer.org/download/latest-stable/composer.phar"
     dest: "/usr/local/bin/composer"
     mode: "0755"
   become: true
+  when: php_install_composer and not composer_bin.stat.exists
 
 - name: Create log directory
   ansible.builtin.file:

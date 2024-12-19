@@ -4,3 +4,4 @@ export LANG=en_US.UTF-8
 
 # PHP
 export COMPOSER_HOME=$HOME/.composer
+export PATH="$HOME/.symfony5/bin:$PATH"
