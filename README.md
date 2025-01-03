@@ -198,6 +198,3 @@ ansible-playbook main.yml --ask-become-pass
 - `⌘ + Shift + H` -> Open Home directory
 - `⌘ + Shift + D` -> Desktop
 - `⌘ + Shift + O` -> Documents
-
-## TODO:
-- [ ] Start apps in `defaults.yml` task after installation for the first time before applying settings
