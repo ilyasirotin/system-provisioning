@@ -87,3 +87,30 @@ function phpv() {
     return 1
   fi
 }
+
+tf() {
+    local path="$1"
+    local extension="$2"
+
+    # Validate input parameters
+    if [[ -z "$path" || -z "$extension" ]]; then
+        echo "Usage: truncate_files <path> <extension>"
+        return 1
+    fi
+
+    # Ensure 'find' and 'truncate' exist in the system
+    if ! command -v /usr/bin/find &>/dev/null; then
+        echo "Error: 'find' command not found."
+        return 1
+    fi
+
+    if ! command -v /usr/bin/truncate &>/dev/null; then
+        echo "Error: 'truncate' command not found."
+        return 1
+    fi
+
+    # Run the command using absolute paths to avoid environment issues
+    /usr/bin/find "$path" -type f -name "*.$extension" -exec /usr/bin/truncate -s 0 {} +
+
+    echo "All *.$extension files in $path have been truncated."
+}
