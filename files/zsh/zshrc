@@ -16,6 +16,11 @@ autoload -Uz compinit && compinit
 # Case insensitive
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
+# Ngrok completions
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi
+
 # Colima
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit
@@ -47,6 +52,7 @@ export BAT_THEME="ansi-dark"
 source <(fzf --zsh)
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+" --exact"\
 " --height 50% --layout reverse --border --no-mouse"\
 " --color=bg:0,fg:7,hl:3"\
 " --color=bg+:8,fg+:7,hl+:11"\

@@ -1,12 +1,10 @@
-Include /Users/ilya/.colima/ssh_config
-
 Host github.com
     HostName github.com
     User git
     IdentityFile ~/.ssh/github
 
 Host *.lan
-    IdentityFile ~/.ssh/default
+    IdentityFile ~/.ssh/default.pub
 
 Host router.lan
     Port 8392

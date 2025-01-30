@@ -67,12 +67,15 @@ dockitems_persist:
   - name: "1Password"
     path: "/Applications/1Password.app/"
     pos: 7
+  - name: "Outlook"
+    path: "/Applications/Microsoft\ Outlook.app/"
+    pos: 8
   - name: "Spotify"
     path: "/Applications/Spotify.app/"
-    pos: 8
+    pos: 9
   - name: "Telegram"
     path: "/Applications/Telegram.app/"
-    pos: 9
+    pos: 10
 
 homebrew_cask_accept_external_apps: true
 homebrew_upgrade_all_packages: true
@@ -124,6 +127,7 @@ homebrew_installed_packages:
   - zsh-autosuggestions
   - sqlite3
   - tcl-tk@8
+  - smartmontools
   # - pngpaste                   # Paste PNG into files
   # - wrk                        # HTTP benchmarking tool
   # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
@@ -172,6 +176,8 @@ homebrew_cask_apps:
   - docker
   - dotnet-sdk
   - fbreader
+  - disk-diet
+  - betterdisplay
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -181,6 +187,7 @@ mas_installed_apps:
   - { id: 462062816, name: "Microsoft PowerPoint" }
   - { id: 985367838, name: "Microsoft Outlook" }
   - { id: 1464122853, name: "NextDNS" }
+  - { id: 1194883472, name: "File Peek" }
 
 mas_uninstalled_apps:
   - { id: 682658836, name: "GarageBand" }
