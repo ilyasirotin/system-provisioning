@@ -39,9 +39,6 @@
     - ansible.builtin.import_tasks: tasks/xattr.yml
       tags: ['xattr']
 
-    #  - ansible.builtin.import_tasks: tasks/colima.yml
-    #   tags: ['colima']
-
     - ansible.builtin.import_tasks: tasks/ssh.yml
       tags: ['ssh']
 

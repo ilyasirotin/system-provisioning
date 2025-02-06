@@ -121,7 +121,6 @@ homebrew_installed_packages:
   - docker-credential-helper
   - dive                       # Tool for exploring each layer in a docker image
   - pyenv
-  - pyenv-virtualenv
   - rbenv
   - zsh-syntax-highlighting
   - zsh-autosuggestions
@@ -178,6 +177,7 @@ homebrew_cask_apps:
   - fbreader
   - disk-diet
   - betterdisplay
+  - android-file-transfer
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -232,6 +232,7 @@ vscode_extensions:
   - gediminaszlatkus.ctags-companion
   - zhuangtongfa.material-theme
   - pkief.material-icon-theme
+  - mongodb.mongodb-vscode
 
 xattr_remove_apps:
   - qBittorrent.app
@@ -244,13 +245,6 @@ app_defaults_scripts:
   - { name: "TG Pro", script: "{{ scripts_dir }}/defaults/tg-pro", restart: ["TG Pro"] }
   - { name: "Mos", script: "{{ scripts_dir }}/defaults/mos", restart: ["Mos"] }
   - { name: "NextDNS", script: "{{ scripts_dir }}/defaults/nextdns", restart: ["NextDNS"] }
-
-# Colima settings
-colima_profile: default
-colima_cpu: 8
-colima_memory: 16
-colima_disk: 256
-colima_vm_type: vz
 
 # Git configs
 git_user_name: "Ilya Sirotin"
