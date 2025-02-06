@@ -3,6 +3,14 @@ unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
+# Shell completions scripts
+fpath=(/Users/ilya/.docker/completions $fpath)
+fpath=(~/.zsh/completions $fpath)
+
+# Init completions
+autoload -Uz compinit
+compinit
+
 # Custom prompt
 autoload -U colors && colors
 NL=$'\n'
@@ -78,11 +86,3 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ilya/.lmstudio/bin"
-
-# Shell completions scripts
-fpath=(/Users/ilya/.docker/completions $fpath)
-fpath=(~/.zsh/completions $fpath)
-
-# Init completions
-autoload -Uz compinit
-compinit
