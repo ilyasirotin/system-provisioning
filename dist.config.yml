@@ -149,7 +149,7 @@ homebrew_taps: []
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   # - "logi-options+"                 # Can not be installed this way due to bug in the ansible collection
-  - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
+  # - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
   - 1password
   - google-chrome
   - firefox
@@ -244,8 +244,8 @@ xattr_remove_apps:
 # Scripts set the default settings for the application
 app_defaults_scripts:
   - { name: "Global", script: "{{ scripts_dir }}/defaults/global", restart: ["Finder", "Dock"] }
-  - { name: "Aldente", script: "{{ scripts_dir }}/defaults/aldente", restart: ["Aldente"] }
-  - { name: "TG Pro", script: "{{ scripts_dir }}/defaults/tg-pro", restart: ["TG Pro"] }
+  # - { name: "Aldente", script: "{{ scripts_dir }}/defaults/aldente", restart: ["Aldente"] }
+  # - { name: "TG Pro", script: "{{ scripts_dir }}/defaults/tg-pro", restart: ["TG Pro"] }
   - { name: "Mos", script: "{{ scripts_dir }}/defaults/mos", restart: ["Mos"] }
   - { name: "NextDNS", script: "{{ scripts_dir }}/defaults/nextdns", restart: ["NextDNS"] }
 
@@ -266,5 +266,5 @@ github_ssh_key_type: "ed25519"
 post_provision_tasks:
   - tasks/screenshots.yml
   - tasks/logi-options-plus.yml
-  - tasks/iterm2.yml
+  # - tasks/iterm2.yml
   - tasks/1password.yml
