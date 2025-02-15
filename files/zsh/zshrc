@@ -3,13 +3,13 @@ unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
-# Shell completions scripts
-fpath=(/Users/ilya/.docker/completions $fpath)
-fpath=(~/.zsh/completions $fpath)
-
 # Init completions
 autoload -Uz compinit
 compinit
+
+# Shell completions scripts
+fpath=(/Users/ilya/.docker/completions $fpath)
+fpath=(~/.zsh/completions $fpath)
 
 # Custom prompt
 autoload -U colors && colors
@@ -33,9 +33,6 @@ export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agen
 # 1Password plugins
 source ~/.config/op/plugins.sh
 
-# 1Password completions
-# eval "$(op completion zsh)"; compdef _op op
-
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 
@@ -44,22 +41,6 @@ alias rcat="$(which cat)"
 
 alias cat="$(which bat)"
 export BAT_THEME="ansi-dark"
-
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-" --exact"\
-" --height 50% --layout reverse --border --no-mouse"\
-" --color=bg:0,fg:7,hl:3"\
-" --color=bg+:8,fg+:7,hl+:11"\
-" --color=info:3,border:3,prompt:4"\
-" --color=pointer:0,marker:9,spinner:9,header:1"
-
-FD_OPTIONS="--follow --exclude .git --exclude node_modules"
-export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
-export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
-export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # Zsh syntax highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -83,6 +64,3 @@ eval "$(pyenv init -)"
 # Sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/ilya/.lmstudio/bin"

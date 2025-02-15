@@ -127,6 +127,7 @@ homebrew_installed_packages:
   - sqlite3
   - tcl-tk@8
   - smartmontools
+  - dtrace
   # - pngpaste                   # Paste PNG into files
   # - wrk                        # HTTP benchmarking tool
   # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
@@ -159,7 +160,7 @@ homebrew_cask_apps:
   - vlc
   - launchcontrol
   - aldente                           # Manual configuration required at first app launch (check README.md)
-  - tg-pro                            # Manual configuration required at first app launch (check README.md)
+  # - tg-pro                            # Manual configuration required at first app launch (check README.md)
   - mos                               # com.apple.quarantine xattr removed, default settings applied
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
   - obsidian                          # Application configurations always stored in the vault
@@ -176,8 +177,10 @@ homebrew_cask_apps:
   - dotnet-sdk
   - fbreader
   - disk-diet
-  - betterdisplay
+  # - betterdisplay
   - android-file-transfer
+  - ollama
+  - macs-fan-control
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
