@@ -89,7 +89,7 @@ homebrew_installed_packages:
   - coreutils
   - direnv                     # Load/unload environment variables based on $PWD
   - dnsmasq                    # Lightweight DNS forwarder and DHCP server
-  - fzf                        # Command-line fuzzy finder written in Go
+  # - fzf                        # Command-line fuzzy finder written in Go
   - fd
   - htop
   - rcm                        # RC file (dotfile) management
@@ -127,7 +127,6 @@ homebrew_installed_packages:
   - sqlite3
   - tcl-tk@8
   - smartmontools
-  - dtrace
   # - pngpaste                   # Paste PNG into files
   # - wrk                        # HTTP benchmarking tool
   # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
@@ -151,15 +150,15 @@ homebrew_cask_apps:
   # - "logi-options+"                 # Can not be installed this way due to bug in the ansible collection
   # - iterm2                            # Configuration will be retrieved from iCloud. Install shell integration (optional)
   - 1password
-  - google-chrome
-  - firefox
+  # - google-chrome
+  # - firefox
   - ngrok
   - telegram
-  - whatsapp
+  # - whatsapp
   - visual-studio-code
   - vlc
   - launchcontrol
-  - aldente                           # Manual configuration required at first app launch (check README.md)
+  # - aldente                           # Manual configuration required at first app launch (check README.md)
   # - tg-pro                            # Manual configuration required at first app launch (check README.md)
   - mos                               # com.apple.quarantine xattr removed, default settings applied
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
@@ -173,7 +172,7 @@ homebrew_cask_apps:
   - xnconvert
   - postman
   - foxitreader
-  - docker
+  # - docker
   - dotnet-sdk
   - fbreader
   - disk-diet
