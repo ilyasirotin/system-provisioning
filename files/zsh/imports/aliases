@@ -3,10 +3,10 @@
 alias ll="ls -lhF"
 alias la="ls -lhaF"
 
-# Show xattr
+# show xattr
 alias lx="ls -@la"
 
-# Git aliases
+# git aliases
 alias gs="git status"
 alias gc="git commit"
 alias gp="git pull"

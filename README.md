@@ -2,43 +2,66 @@
 
 ## Prerequisites
 
-### Install requirements
-```shell
-xcode-select --install
-# Install XCode from AppStore manually to be able to agree with license
-sudo xcodebuild -license
-/usr/sbin/softwareupdate --install-rosetta --agree-to-license
-```
+### Apple ID & iCloud
+- [ ] Sign in to Apple ID
+- [ ] Login in AppStore (required by mas)
 
-### Get ansible
-```shell
-sudo pip3 install --upgrade pip
-sudo pip3 install ansible
-```
+### Environment setup
 
-### Run playbook
-```shell
-git clone https://<PAT>@github.com/ilyasirotin/ansible-osx-setup.git
+1. Install XCode from the AppStore
+2. Install xcode command line tools:
+    ```shell
+    xcode-select --install
+    ```
+3. Agree with the license:
+    ```shell
+    sudo xcodebuild -license
+    ```
+4. Install Rosetta:
+    ```shell
+    /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+    ```
+5. Install [Homebrew](https://brew.sh/)
+6. Install [pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
+7. Install missing packages required by pyenv build system:
+    ```shell
+    brew install xz
+    ```
+8. Clone repository using personal access token:
+    ```shell
+    git clone https://<PAT>@github.com/ilyasirotin/ansible-osx-setup.git
+    ```
+9. Navigate to repository and install python using pyenv:
+    ```shell
+    cd path/to/cloned/repository && pyenv install
+    ```
+10. Initialize python virtual environment:
+    ```shell
+    python -m venv ./.venv && source ./.venv/bin/activate
+    ```
+11. Install ansible:
+    ```shell
+    pip install ansible
+    ```
+12. Install ansible dependencies:
+    ```shell
+    ansible-galaxy install -r requirements.yml -f
+    ```
+13. Create config.yml and review playbook settings:
+    ```shell
+    cp dist.config.yml config.yml
+    ```
+14. Run the playbook:
+    ```shell
+    ansible-playbook main.yml --ask-become-pass
+    ```
 
-ansible-galaxy install -r requirements.yml -f
-cp dist.config.yml config.yml
-# Review config.yml values before starting playbook
-ansible-playbook main.yml --ask-become-pass
-```
-
-## Checklists
+## Manual configuration checklists
 
 ### Security & Privacy Initial Setup
 - [ ] Enable FileVault disk encryption
 - [ ] Configure Touch ID (add multiple fingerprints)
 - [ ] Review and configure Privacy settings
-
-### Apple ID & iCloud
-- [ ] Sign in to Apple ID
-- [ ] Configure iCloud services
-- [ ] Enable Find My Mac
-- [ ] Set up iCloud Drive
-- [ ] Login in AppStore (required by mas)
 
 ### System settings
 - **Network:**
@@ -145,9 +168,6 @@ ansible-playbook main.yml --ask-become-pass
   - [ ] Activate License
 - [ ] Activate "Launch at Login" in general settings (check login item was added)
 
-### TG Pro
-- [ ] Activate license on first launch
-
 ### iTerm2
 - **Change settings folder location on first run:**
   - [ ] Settings -> General -> Settings:
@@ -156,37 +176,16 @@ ansible-playbook main.yml --ask-become-pass
     - [ ] Review imported settings
     - [ ] Check shell integration work
 
-### Launchcontrol
-- [ ] Activate license on first launch
-
 ### JetBrains Toolbox
 - [ ] Login on to jetbrains account on first launch
 - [ ] Install IDEs
 - [ ] [Launch IDEs and sync settings](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync):
   - [ ] `⌘ + ,` -> Backup and Sync -> Enable Backup and Sync -> Check all -> Get Settings from Account
 
-### Obsidian
-- [ ] Pull vault repository from GitHub
-- [ ] Open vault
-
-### CrossOver
-- [ ] Login to account on first launch
-- [ ] Install WinBox
-
-### Docker
-- [ ] Login to docker hub on first launch
-- [ ] Review docker desktop settings
-
 ### Logi Options+
 - [ ] Login to account on first launch
 - [ ] Restore device settings from the last backup
 - [ ] Disable AI Prompt builder
-
-### Mos
-- [ ] Set "Launch at login" after installation
-
-### NTFS For Mac
-- [ ] Follow official installation guide
 
 ## Useful system shortcuts
 

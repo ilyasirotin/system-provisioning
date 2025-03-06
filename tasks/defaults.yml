@@ -20,6 +20,7 @@
 - name: Apply defaults
   ansible.builtin.command:
     cmd: "{{ item.script }}"
+  environment: "{{ item.vars | default({}) }}"
 
 - name: Start application
   ansible.builtin.command:

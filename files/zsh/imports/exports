@@ -5,3 +5,10 @@ export LANG=en_US.UTF-8
 # PHP
 export COMPOSER_HOME=$HOME/.composer
 export PATH="$HOME/.symfony5/bin:$PATH"
+
+# flutter
+export FLUTTER_GIT_URL="https://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@github.com/flutter/flutter.git"
+export PATH="$HOME/.fvm/default/bin:$PATH"
+
+# FVM
+export FVM_CACHE_PATH="$HOME/.fvm"

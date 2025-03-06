@@ -64,3 +64,8 @@ eval "$(pyenv init -)"
 # Sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/ilya/.dart-cli-completion/zsh-config.zsh ]] && . /Users/ilya/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
