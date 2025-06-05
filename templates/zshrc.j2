@@ -10,8 +10,8 @@ autoload -Uz compinit
 compinit
 
 # Shell completions scripts
-fpath=({{ ansible_env.HOME }}/.docker/completions $fpath)
-fpath=({{ ansible_env.HOME }}/.zsh/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
+fpath=($HOME/.zsh/completions $fpath)
 
 # Custom prompt
 autoload -U colors && colors
@@ -30,10 +30,10 @@ if command -v ngrok &>/dev/null; then
 fi
 
 # 1Password ssh agent
-export SSH_AUTH_SOCK={{ ansible_env.HOME }}/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+export SSH_AUTH_SOCK="$HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 # 1Password plugins
-source {{ ansible_env.HOME }}/.config/op/plugins.sh
+source "$HOME/.config/op/plugins.sh"
 
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
@@ -51,22 +51,22 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Pyenv
-export PYENV_ROOT="{{ ansible_env.HOME }}/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Common exports
-export COMPOSER_HOME={{ ansible_env.HOME }}/.composer
+export COMPOSER_HOME=$HOME/.composer
 
 {% if node_support is defined and node_support %}
 # NVM
-export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 {% endif %}
 
 {% if jdk_support is defined and jdk_support %}
 # Sdkman
-export SDKMAN_DIR="{{ ansible_env.HOME }}/.sdkman"
-[[ -s "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh" ]] && source "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 {% endif %}

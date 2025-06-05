@@ -6,7 +6,8 @@
 config.yml
 *.swp
 
-/files/*zprofile
-/files/*zshrc
+/files/*/zprofile
+/files/*/zshrc
 /files/*vimrc
 /files/*ssh-config
+/files/*ssh-agent-config.toml

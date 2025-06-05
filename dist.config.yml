@@ -131,18 +131,14 @@ homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  # - iterm2                          # Configuration will be retrieved from iCloud. Install shell integration (optional)
   - 1password
   - google-chrome
-  # - firefox
   - ngrok
   - telegram
   - visual-studio-code
   - vlc
   - launchcontrol
-  # - aldente                         # Manual configuration required at first app launch (check README.md)
-  # - tg-pro                            # Manual configuration required at first app launch (check README.md)
-  - mos                               # com.apple.quarantine xattr removed, default settings applied
+  - mos
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
   - obsidian                          # Application configurations always stored in the vault
   - spotify
@@ -152,12 +148,6 @@ homebrew_cask_apps:
   - mullvadvpn
   - xnconvert
   - postman
-  # - foxitreader
-  # - docker
-  # - dotnet-sdk
-  # - fbreader
-  # - disk-diet
-  # - betterdisplay
   - android-file-transfer
   - ollama
   - lm-studio
@@ -165,6 +155,16 @@ homebrew_cask_apps:
   - transmission
   - google-drive
   - zoom
+  # - foxitreader
+  # - docker
+  # - dotnet-sdk
+  # - fbreader
+  # - disk-diet
+  # - betterdisplay
+  # - aldente                         # Manual configuration required at first app launch (check README.md)
+  # - tg-pro                          # Manual configuration required at first app launch (check README.md)
+  # - firefox
+  # - iterm2                          # Configuration will be retrieved from iCloud. Install shell integration (optional)
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
@@ -191,6 +191,7 @@ vscode_extensions:
   - ms-vscode-remote.vscode-remote-extensionpack
   - ms-vscode-remote.remote-ssh-edit
   - ms-vscode.remote-explorer
+  - ms-azuretools.vscode-docker
   - wholroyd.jinja
   - alefragnani.bookmarks
   - twxs.cmake
@@ -258,5 +259,4 @@ jdk_support: true
 post_provision_tasks:
   - tasks/screenshots.yml
   - tasks/logi-options-plus.yml
-  # - tasks/iterm2.yml
   - tasks/1password.yml
