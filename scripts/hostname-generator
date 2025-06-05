@@ -1,0 +1,31 @@
+#!/bin/bash
+
+RANDOM_LENGTH=8
+NUM_OPTIONS=20
+PREFIX=mbp-
+
+echo "============="
+
+declare -a generated_hostnames_list
+
+for i in $(seq 1 $NUM_OPTIONS); do
+    while true; do
+        RANDOM_CHARS=$(head /dev/urandom | LC_ALL=C tr -dc a-z0-9 | head -c "$RANDOM_LENGTH")
+        HOSTNAME="$PREFIX$RANDOM_CHARS"
+        IS_UNIQUE=true
+        for existing_hostname in "${generated_hostnames_list[@]}"; do
+            if [[ "$existing_hostname" == "$HOSTNAME" ]]; then
+                IS_UNIQUE=false
+                break
+            fi
+        done
+
+        if $IS_UNIQUE; then
+            generated_hostnames_list+=("$HOSTNAME")
+            break
+        fi
+    done
+    echo "$HOSTNAME"
+done
+
+echo "============="

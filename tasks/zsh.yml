@@ -21,6 +21,16 @@
     path: "{{ zsh_completions_dir }}"
     state: directory
 
+- name: Create zsh configs from templates
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "{{ playbook_dir }}/files/zsh/{{ item | regex_replace('\\.j2$', '') }}"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+  loop:
+    - zshrc.j2
+    - zprofile.j2
+
 - name: Link zsh configs
   ansible.builtin.include_role:
     name: symlink
@@ -39,5 +49,4 @@
     symlink_dst: "{{ ansible_user_dir }}/.zsh_{{ item }}"
   loop:
     - aliases
-    - exports
     - functions

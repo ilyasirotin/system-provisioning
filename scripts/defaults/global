@@ -43,7 +43,6 @@ defaults write com.apple.dock "show-recents" -int 0
 ###############################################################################
 
 defaults write com.apple.ActivityMonitor OpenMainWindow -int 1
-defaults write com.apple.ActivityMonitor ShowCategory -int 101
 defaults write com.apple.ActivityMonitor UpdatePeriod -int 5
 
 ###############################################################################

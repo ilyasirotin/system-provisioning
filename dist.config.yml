@@ -1,10 +1,10 @@
 ---
 # MacOS setup script configs
-macos_hostname: "hostname" # e.g. "macbook-pro"
-macos_computer_name: "computer_name" # e.g. "MacBook Pro"
+macos_hostname: "mbp-51ew5rz5" # e.g. "mbp-51ew5rz5"
+macos_computer_name: "MacBook Pro" # e.g. "MacBook Pro"
 
 # MacOS screenshots
-macos_screenshots_dir: "{{ ansible_user_dir }}/Documents/Screenshots"
+macos_screenshots_dir: "{{ ansible_user_dir }}/Desktop"
 macos_screenshots_type: "png"
 
 # Path to common shell scripts
@@ -67,15 +67,12 @@ dockitems_persist:
   - name: "1Password"
     path: "/Applications/1Password.app/"
     pos: 7
-  - name: "Outlook"
-    path: "/Applications/Microsoft\ Outlook.app/"
-    pos: 8
   - name: "Spotify"
     path: "/Applications/Spotify.app/"
-    pos: 9
+    pos: 8
   - name: "Telegram"
     path: "/Applications/Telegram.app/"
-    pos: 10
+    pos: 9
 
 homebrew_cask_accept_external_apps: true
 homebrew_upgrade_all_packages: true
@@ -84,7 +81,6 @@ homebrew_installed_packages:
   - autoconf
   - automake
   - make
-  - gcc
   - bfg                        # Remove large files or passwords from Git history like git-filter-branch
   - coreutils
   - direnv                     # Load/unload environment variables based on $PWD
@@ -137,7 +133,7 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   # - iterm2                          # Configuration will be retrieved from iCloud. Install shell integration (optional)
   - 1password
-  # - google-chrome
+  - google-chrome
   # - firefox
   - ngrok
   - telegram
@@ -145,38 +141,34 @@ homebrew_cask_apps:
   - vlc
   - launchcontrol
   # - aldente                         # Manual configuration required at first app launch (check README.md)
-  - tg-pro                            # Manual configuration required at first app launch (check README.md)
+  # - tg-pro                            # Manual configuration required at first app launch (check README.md)
   - mos                               # com.apple.quarantine xattr removed, default settings applied
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
   - obsidian                          # Application configurations always stored in the vault
   - spotify
-  - qbittorrent                       # com.apple.quarantine xattr removed
   - crossover
   - handbrake
   - cyberduck
   - mullvadvpn
   - xnconvert
   - postman
-  - foxitreader
-  - docker
-  - dotnet-sdk
-  - fbreader
-  - disk-diet
+  # - foxitreader
+  # - docker
+  # - dotnet-sdk
+  # - fbreader
+  # - disk-diet
   # - betterdisplay
   - android-file-transfer
   - ollama
-  - foobar2000
-  # - macs-fan-control
+  - lm-studio
+  - macs-fan-control
+  - transmission
+  - google-drive
+  - zoom
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
-  # - { id: 497799835, name: "Xcode" }
-  - { id: 462054704, name: "Microsoft Word" }
-  - { id: 462058435, name: "Microsoft Excel" }
-  - { id: 462062816, name: "Microsoft PowerPoint" }
-  - { id: 985367838, name: "Microsoft Outlook" }
   - { id: 1464122853, name: "NextDNS" }
-  - { id: 1194883472, name: "File Peek" }
 
 mas_uninstalled_apps:
   - { id: 682658836, name: "GarageBand" }
@@ -199,13 +191,10 @@ vscode_extensions:
   - ms-vscode-remote.vscode-remote-extensionpack
   - ms-vscode-remote.remote-ssh-edit
   - ms-vscode.remote-explorer
-  - ms-vscode.vscode-serial-monitor
   - wholroyd.jinja
-  - dan-c-underwood.arm
   - alefragnani.bookmarks
   - twxs.cmake
   - vadimcn.vscode-lldb
-  - firefox-devtools.vscode-firefox-debug
   - mikestead.dotenv
   - usernamehw.errorlens
   - dbaeumer.vscode-eslint
@@ -215,16 +204,13 @@ vscode_extensions:
   - esbenp.prettier-vscode
   - mechatroner.rainbow-csv
   - timonwong.shellcheck
-  - jock.svg
   - gruntfuggly.todo-tree
-  - mshr-h.veriloghdl
   - gediminaszlatkus.ctags-companion
   - zhuangtongfa.material-theme
   - pkief.material-icon-theme
   - mongodb.mongodb-vscode
 
 xattr_remove_apps:
-  - qBittorrent.app
   - Mos.app
 
 # Scripts set the default settings for the application
@@ -237,9 +223,9 @@ app_defaults_scripts:
   #   script: "{{ scripts_dir }}/defaults/aldente"
   #   restart: ["Aldente"]
 
-  - name: "TG Pro"
-    script: "{{ scripts_dir }}/defaults/tg-pro"
-    restart: ["TG Pro"]
+  # - name: "TG Pro"
+  #   script: "{{ scripts_dir }}/defaults/tg-pro"
+  #   restart: ["TG Pro"]
 
   - name: "Mos"
     script: "{{ scripts_dir }}/defaults/mos"
@@ -263,6 +249,10 @@ github_add_ssh_key: true
 github_force_ssh_key: true # Replace existing
 github_ssh_key_name: default
 github_ssh_key_type: "ed25519"
+
+# Developer environment
+node_support: true
+jdk_support: true
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
