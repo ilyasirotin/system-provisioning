@@ -8,6 +8,15 @@
     dest: "{{ item.script }}"
     mode: a+x
 
+- name: Start application for the first time
+  ansible.builtin.command:
+    cmd: "open -a \"{{ app }}\""
+  changed_when: false
+  when: item.restart is defined and item.restart | length > 0
+  loop: "{{ item.restart }}"
+  loop_control:
+    loop_var: app
+
 - name: Quit application
   ansible.builtin.command:
     cmd: "osascript -e 'tell application \"{{ app }}\" to quit'"

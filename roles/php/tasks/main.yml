@@ -29,31 +29,3 @@
     mode: "0755"
   become: true
   when: php_install_composer and not composer_bin.stat.exists
-
-- name: Create log directory
-  ansible.builtin.file:
-    dest: "{{ homebrew_prefix }}/var/log/php/{{ item }}"
-    state: directory
-    mode: "0755"
-  loop: "{{ php_versions }}"
-
-- name: Copy PHP configuration in place
-  ansible.builtin.template:
-    src: php.ini.j2
-    dest: "{{ homebrew_prefix }}/etc/php/{{ item }}/php.ini"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
-    mode: "0644"
-  loop: "{{ php_versions }}"
-
-- name: Install PECL extensions via brew
-  ansible.builtin.include_tasks: pecl-brewed.yml
-  loop: "{{ php_versions }}"
-  loop_control:
-    loop_var: php_version
-
-- name: Install PECL extensions manually
-  ansible.builtin.include_tasks: pecl-custom.yml
-  loop: "{{ php_versions }}"
-  loop_control:
-    loop_var: php_version
