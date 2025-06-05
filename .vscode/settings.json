@@ -1,5 +1,4 @@
 {
-    "ansible.python.interpreterPath": "/Users/ilya/Git/devstack-ansible/.venv/bin/python",
     "ansible.ansible.useFullyQualifiedCollectionNames": true,
     "files.associations": {
         "*.yml": "ansible",
