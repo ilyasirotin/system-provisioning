@@ -145,7 +145,6 @@ homebrew_cask_apps:
   - crossover
   - handbrake
   - cyberduck
-  - mullvadvpn
   - xnconvert
   - postman
   - android-file-transfer
