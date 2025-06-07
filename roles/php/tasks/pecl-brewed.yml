@@ -1,0 +1,6 @@
+---
+- name: Install brewed PHP extensions
+  community.general.homebrew:
+    name: "{{ item }}@{{ php_version }}"
+    state: present
+  loop: "{{ php_pecl_brews }}"

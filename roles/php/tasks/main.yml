@@ -29,3 +29,9 @@
     mode: "0755"
   become: true
   when: php_install_composer and not composer_bin.stat.exists
+
+- name: Install PECL extensions via brew
+  ansible.builtin.include_tasks: pecl-brewed.yml
+  loop: "{{ php_versions }}"
+  loop_control:
+    loop_var: php_version
