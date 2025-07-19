@@ -31,9 +31,9 @@ This guide outlines the steps for setting up a new macOS environment.
     brew install xz
     ```
 6.  **Clone Setup Repository:**
-    Clone the `ansible-osx-setup` repository using your Personal Access Token (PAT):
+    Clone the `devstack-ansible` repository using your Personal Access Token (PAT):
     ```shell
-    git clone https://<YOUR_PAT>@github.com/ilyasirotin/ansible-osx-setup.git
+    git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
     ```
     *Replace `<YOUR_PAT>` with your actual Personal Access Token.*
 7.  **Install Project Python Version:**
@@ -46,8 +46,7 @@ This guide outlines the steps for setting up a new macOS environment.
 8.  **Initialize Python Virtual Environment:**
     Create and activate a Python virtual environment:
     ```shell
-    python -m venv ./.venv
-    source ./.venv/bin/activate
+    python -m venv ./.venv && source ./.venv/bin/activate
     ```
 9.  **Install Ansible:**
     With the virtual environment activated, install Ansible:
