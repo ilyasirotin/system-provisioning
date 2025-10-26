@@ -96,15 +96,6 @@ After the automated setup, some applications and system settings require manual 
         - [ ] [GitHub plugin](https://developer.1password.com/docs/cli/shell-plugins/github/)
     - *For more information, see the [1Password CLI documentation](https://developer.1password.com/docs/cli/get-started/).*
 
-<a id="aldente"></a>
-### AlDente
-- [ ] Accept the helper installation prompt when AlDente first launches.
-- **Follow the first-time configuration guide carefully:**
-    - [ ] Disable "Optimized Battery Charging" in System Settings -> Battery.
-    - [ ] **Important:** Skip the default customization options presented by AlDente.
-    - [ ] Activate your AlDente license.
-- [ ] Enable "Launch at Login" in AlDente's general settings and verify that the login item has been added in System Settings -> General -> Login Items.
-
 ### iTerm2
 - **Configure Settings Folder Location (on first run):**
     - [ ] Open iTerm2 -> Settings (or `⌘ + ,`).
@@ -124,11 +115,6 @@ After the automated setup, some applications and system settings require manual 
     - [ ] Enable "Sync settings across different JetBrains IDE products".
     - [ ] Configure it to "Get Settings from Account" or "Push Settings to Account" based on your setup.
     - *Refer to the [JetBrains IDE settings sync documentation](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync) for detailed instructions.*
-
-### Logi Options+
-- [ ] Log in to your Logitech account on the first launch of Logi Options+.
-- [ ] Restore your device settings from the latest backup, if available.
-- [ ] Disable the "AI Prompt Builder" feature if not needed.
 
 ## Useful System Shortcuts
 
