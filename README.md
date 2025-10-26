@@ -16,6 +16,7 @@ This guide outlines the steps for setting up a new macOS environment.
     xcode-select --install
     ```
     Follow the prompts to agree to the license terms.
+    
 2.  **Install Rosetta (for Apple Silicon Macs):**
     This step is necessary for running applications built for Intel processors on Apple Silicon Macs.
     ```shell
@@ -23,48 +24,44 @@ This guide outlines the steps for setting up a new macOS environment.
     ```
 3.  **Install Homebrew:**
     Follow the instructions on the [official Homebrew website](https://brew.sh/).
-4.  **Install pyenv:**
-    Refer to the [pyenv installation guide](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation) for detailed instructions.
-5.  **Install Pyenv Build Dependencies:**
-    Install missing packages required by the `pyenv` build system:
+
+4.  **Install mise:**
     ```shell
-    brew install xz
+    brew install mise
     ```
-6.  **Clone Setup Repository:**
+
+5.  **Clone Setup Repository:**
     Clone the `devstack-ansible` repository using your Personal Access Token (PAT):
     ```shell
     git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
     ```
     *Replace `<YOUR_PAT>` with your actual Personal Access Token.*
-7.  **Install Project Python Version:**
-    Navigate to the cloned repository directory and use `pyenv` to install the Python version specified in the project:
+
+6.  **Install Project Python Version:**
+    Navigate to the cloned repository directory and use `mise` to install the Python version specified in the project:
     ```shell
-    cd path/to/cloned/repository
-    pyenv install
+    mise install
     ```
     *Replace `path/to/cloned/repository` with the actual path to the cloned directory.*
-8.  **Initialize Python Virtual Environment:**
-    Create and activate a Python virtual environment:
-    ```shell
-    python -m venv ./.venv && source ./.venv/bin/activate
-    ```
-9.  **Install Ansible:**
+
+7.  **Install Ansible:**
     With the virtual environment activated, install Ansible:
     ```shell
-    pip install ansible
+    pip install -r requirements.txt
     ```
-10. **Install Ansible Dependencies:**
+8.  **Install Ansible Dependencies:**
     Install dependencies listed in `requirements.yml`:
     ```shell
     ansible-galaxy install -r requirements.yml -f
     ```
-11. **Configure Playbook Settings:**
+9.  **Configure Playbook Settings:**
     Copy the distributed configuration file and review its settings:
     ```shell
     cp dist.config.yml config.yml
     ```
     *Open `config.yml` and adjust settings as needed.*
-12. **Run Ansible Playbook:**
+
+10. **Run Ansible Playbook:**
     Execute the main playbook. You will be prompted for your user password.
     ```shell
     ansible-playbook main.yml --ask-become-pass
