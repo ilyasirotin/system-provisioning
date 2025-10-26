@@ -67,8 +67,8 @@ dockitems_persist:
   - name: "1Password"
     path: "/Applications/1Password.app/"
     pos: 7
-  - name: "Spotify"
-    path: "/Applications/Spotify.app/"
+  - name: "Deezer"
+    path: "/Applications/Deezer.app/"
     pos: 8
   - name: "Telegram"
     path: "/Applications/Telegram.app/"
@@ -104,7 +104,7 @@ homebrew_installed_packages:
   - wget
   - tree
   - bat                        # Clone of cat(1) with syntax highlighting and Git integration
-  - tldr                       # Simplified and community-driven man pages
+  - tlrc                       # Simplified and community-driven man pages
   - ncdu                       # NCurses Disk Usage
   - 1password-cli
   - gh
@@ -115,17 +115,18 @@ homebrew_installed_packages:
   - font-ibm-plex-mono
   - docker-credential-helper
   - dive                       # Tool for exploring each layer in a docker image
-  - pyenv
-  - rbenv
   - zsh-syntax-highlighting
   - zsh-autosuggestions
   - sqlite3
   - tcl-tk@8
   - smartmontools
-  # - wrk                        # HTTP benchmarking tool
-  # - iperf                      # Tool to measure maximum TCP and UDP bandwidth
-  # - nmap
-  # - watchman
+  - fastfetch
+  - cpufetch
+  - wrk                        # HTTP benchmarking tool
+  - iperf                      # Tool to measure maximum TCP and UDP bandwidth
+  - nmap
+  - watch
+  - mise
 
 homebrew_taps: []
 
@@ -141,33 +142,24 @@ homebrew_cask_apps:
   - mos
   - jetbrains-toolbox                 # Use cloud sync for settings retrieveing (check README.md)
   - obsidian                          # Application configurations always stored in the vault
-  - spotify
+  - deezer
   - crossover
   - handbrake
   - cyberduck
   - xnconvert
   - postman
-  - android-file-transfer
-  - ollama
-  - lm-studio
   - macs-fan-control
   - transmission
   - google-drive
   - zoom
-  # - foxitreader
-  # - docker
-  # - dotnet-sdk
-  # - fbreader
-  # - disk-diet
-  # - betterdisplay
-  # - aldente                         # Manual configuration required at first app launch (check README.md)
-  # - tg-pro                          # Manual configuration required at first app launch (check README.md)
-  # - firefox
-  # - iterm2                          # Configuration will be retrieved from iCloud. Install shell integration (optional)
+  - microsoft-teams
+  - proton-drive
+  - proton-mail
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
   - { id: 1464122853, name: "NextDNS" }
+  - { id: 1476545828, name: "MacDroid" }
 
 mas_uninstalled_apps:
   - { id: 682658836, name: "GarageBand" }
@@ -206,7 +198,6 @@ vscode_extensions:
   - timonwong.shellcheck
   - gruntfuggly.todo-tree
   - gediminaszlatkus.ctags-companion
-  - zhuangtongfa.material-theme
   - pkief.material-icon-theme
   - mongodb.mongodb-vscode
 
@@ -218,14 +209,6 @@ app_defaults_scripts:
   - name: "Global"
     script: "{{ scripts_dir }}/defaults/global"
     restart: ["Finder", "Dock"]
-
-  # - name: "Aldente"
-  #   script: "{{ scripts_dir }}/defaults/aldente"
-  #   restart: ["Aldente"]
-
-  # - name: "TG Pro"
-  #   script: "{{ scripts_dir }}/defaults/tg-pro"
-  #   restart: ["TG Pro"]
 
   - name: "Mos"
     script: "{{ scripts_dir }}/defaults/mos"
@@ -250,12 +233,7 @@ github_force_ssh_key: true # Replace existing
 github_ssh_key_name: default
 github_ssh_key_type: "ed25519"
 
-# Developer environment
-node_support: true
-jdk_support: true
-
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/screenshots.yml
-  - tasks/logi-options-plus.yml
   - tasks/1password.yml

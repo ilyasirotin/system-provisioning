@@ -1,26 +1,5 @@
 #!/bin/bash
 
-# Delete a given line number in the known_hosts file
-function knownrm() {
- re='^[0-9]+$'
- if ! [[ $1 =~ $re ]] ; then
-   echo "error: line number missing" >&2;
- else
-   sed -i '' "$1d" ~/.ssh/known_hosts
- fi
-}
-
-# Enter a running Docker container
-function denter() {
- if [[ ! "$1" ]] ; then
-     echo "You must supply a container ID or name."
-     return 0
- fi
-
- docker exec -it "$1" bash
- return 0
-}
-
 # Change PHP version
 function phpv() {
   local version="$1"

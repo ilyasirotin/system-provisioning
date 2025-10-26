@@ -48,14 +48,6 @@
     - ansible.builtin.import_tasks: tasks/github.yml
       tags: ['github']
 
-    - ansible.builtin.import_tasks: tasks/sdkman.yml
-      tags: ['devtools', 'sdkman']
-      when: jdk_support is defined and jdk_support
-
-    - ansible.builtin.import_tasks: tasks/nvm.yml
-      tags: ['devtools', 'nvm']
-      when: node_support is defined and node_support
-
     - name: Include defaults configuration task
       ansible.builtin.include_tasks:
         file: tasks/defaults.yml
