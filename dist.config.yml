@@ -155,14 +155,7 @@ homebrew_cask_apps:
   - microsoft-teams
   - proton-drive
   - proton-mail
-
-# See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps:
-  - { id: 1464122853, name: "NextDNS" }
-  - { id: 1476545828, name: "MacDroid" }
-
-mas_uninstalled_apps:
-  - { id: 682658836, name: "GarageBand" }
+  - protonvpn
 
 # Wheter install VSCode plugins and set defined settings templates.
 configure_vscode: true
@@ -200,6 +193,8 @@ vscode_extensions:
   - gediminaszlatkus.ctags-companion
   - pkief.material-icon-theme
   - mongodb.mongodb-vscode
+  - anthropic.claude-code
+  - parallelsdesktop.parallels-desktop
 
 xattr_remove_apps:
   - Mos.app

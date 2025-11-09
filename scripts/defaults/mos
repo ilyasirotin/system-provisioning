@@ -4,7 +4,7 @@ defaults write -app "Mos" hideStatusItem -int 1
 
 defaults write -app "Mos" precision -int 1
 
-defaults write -app "Mos" reverse -int 0
+defaults write -app "Mos" reverse -int 1
 
 defaults write -app "Mos" smooth -int 1
 

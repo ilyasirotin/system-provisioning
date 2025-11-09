@@ -2,4 +2,4 @@
 python.uv_venv_auto = true
 
 [env]
-_.python.venv = { path = ".venv", create = true }
+_.python.venv = { path = ".venv", create = true, uv_create_args = ['--seed'] }

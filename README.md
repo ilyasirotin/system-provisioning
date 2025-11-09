@@ -42,18 +42,19 @@ This guide outlines the steps for setting up a new macOS environment.
     ```shell
     mise install
     ```
-    *Replace `path/to/cloned/repository` with the actual path to the cloned directory.*
 
 7.  **Install Ansible:**
     With the virtual environment activated, install Ansible:
     ```shell
     pip install -r requirements.txt
     ```
+
 8.  **Install Ansible Dependencies:**
     Install dependencies listed in `requirements.yml`:
     ```shell
     ansible-galaxy install -r requirements.yml -f
     ```
+
 9.  **Configure Playbook Settings:**
     Copy the distributed configuration file and review its settings:
     ```shell

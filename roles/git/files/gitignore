@@ -29,3 +29,12 @@
 
 # Apps
 .idea
+.vagrant
+*.sublime-project
+*.sublime-workspace
+
+# Python
+.venv
+
+# Ansible
+.ansible
