@@ -1,3 +1,6 @@
+[tools]
+python = "3.10"
+
 [settings]
 python.uv_venv_auto = true
 

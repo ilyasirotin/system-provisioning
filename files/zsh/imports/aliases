@@ -23,3 +23,8 @@ alias dpsa="docker ps -a"
 
 # zsh
 alias zshcc="rm ~/.zcompdump && autoload -Uz compinit && compinit"
+
+# general aliases
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias grep='grep --color=auto'
