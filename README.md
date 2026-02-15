@@ -1,4 +1,4 @@
-# Environment Setup
+# Setup
 
 Clone repository using Personal Access Token (PAT):
 
@@ -38,7 +38,7 @@ git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
     ```
 </details>
 
-## Project configuration
+# Playbook configuration
 
 1. **Install Python:**
     Use `mise` to install the Python version specified in the project:
@@ -51,7 +51,7 @@ git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
     ANSIBLE_HOME=$PWD/.ansible ansible-galaxy install -r requirements.yml -f
     ```
 
-## **Run playbook:**
+# **Run playbook:**
 ```shell
 # all
 ANSIBLE_HOME=$PWD/.ansible ansible-playbook main.yml -K
