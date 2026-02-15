@@ -28,7 +28,7 @@ git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
 
 ## Linux
 
-<details open>
+<details>
     <summary>Prerequisites</summary>
 
 1. [Install Mise](https://mise.jdx.dev/getting-started.html)
