@@ -51,7 +51,7 @@ git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
     ANSIBLE_HOME=$PWD/.ansible ansible-galaxy install -r requirements.yml -f
     ```
 
-# **Run playbook:**
+# **Run playbook**
 ```shell
 # all
 ANSIBLE_HOME=$PWD/.ansible ansible-playbook main.yml -K
