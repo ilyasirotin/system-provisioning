@@ -2,14 +2,12 @@
 hostname: "lnx-z26ys0t5"
 computer_name: "ThinkPad P1 Gen 7"
 
-dnf_groups:
-  - admin-tools
-  - libreoffice
-  - c-development
-  - development-tools
-  - sound-and-video
-
 dnf_packages:
+  - "@admin-tools"
+  - "@libreoffice"
+  - "@c-development"
+  - "@development-tools"
+  - "@sound-and-video"
   - 1password
   - dnsmasq
   - fastfetch

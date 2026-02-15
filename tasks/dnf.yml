@@ -1,0 +1,11 @@
+---
+- name: Install DNF packages
+  ansible.builtin.dnf:
+    name: "{{ dnf_packages }}"
+    state: present
+  become: true
+
+- name: Autoremove unneeded packages installed as dependencies
+  ansible.builtin.dnf:
+    autoremove: true
+  become: true

@@ -2,6 +2,8 @@
 - name: Host configuration
   hosts: local
 
+  become_method: sudo
+
   vars_files:
     - default.config.yml
 
@@ -14,8 +16,8 @@
 
   roles:
     - role: geerlingguy.mac.homebrew
-      tags: ['homebrew']
-      when: ansible_os_family == "Darwin"
+      tags: ['packages', 'homebrew']
+      when: ansible_facts["os_family"] == "Darwin"
     - role: dnsmasq
       tags: ['dnsmasq']
     - role: git
@@ -24,16 +26,24 @@
       tags: ['vscode']
 
   tasks:
+    - ansible.builtin.import_tasks: tasks/dnf.yml
+      tags: ['shell', 'dnf']
+      when: ansible_facts["os_family"] == "RedHat"
+
+    - ansible.builtin.import_tasks: tasks/flatpak.yml
+      tags: ['shell', 'flatpak']
+      when: ansible_facts["os_family"] == "RedHat"
+
     - ansible.builtin.import_tasks: tasks/scripts.yml
       tags: ['scripts']
 
     - ansible.builtin.import_tasks: tasks/zsh.yml
       tags: ['shell', 'zsh']
-      when: ansible_os_family == "Darwin"
+      when: ansible_facts["os_family"] == "Darwin"
 
     - ansible.builtin.import_tasks: tasks/bash.yml
       tags: ['shell', 'bash']
-      when: ansible_os_family == "RedHat"
+      when: ansible_facts["os_family"] == "RedHat"
 
     - ansible.builtin.import_tasks: tasks/ssh.yml
       tags: ['ssh']

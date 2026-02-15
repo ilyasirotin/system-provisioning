@@ -7,47 +7,54 @@ git clone https://<YOUR_PAT>@github.com/ilyasirotin/devstack-ansible.git
 ```
 
 ## MacOS
-<details>
+<details open>
 <summary>Prerequisites</summary>
 
-1.  **Install Command Line Tools:**
+1. **Install Command Line Tools:**
     ```shell
     xcode-select --install
     ```
-2.  **Install Rosetta (for Apple Silicon Macs):**
+2. **Install Rosetta (for Apple Silicon Macs):**
     ```shell
     /usr/sbin/softwareupdate --install-rosetta --agree-to-license
     ```
 3. [Install Homebrew](https://brew.sh/)
 4. [Install Mise](https://mise.jdx.dev/getting-started.html)
+5. **Copy the distributed configuration file:**
+    ```shell
+    cp Darwin.config.yml config.yml
+    ```
 </details>
 
 ## Linux
 
-<details>
+<details open>
     <summary>Prerequisites</summary>
 
- 1.  [Install Mise](https://mise.jdx.dev/getting-started.html)
+1. [Install Mise](https://mise.jdx.dev/getting-started.html)
+2. **Copy the distributed configuration file:**
+    ```shell
+    cp RedHat.config.yml config.yml
+    ```
 </details>
 
 ## Project configuration
 
-1.  **Install Python:**
-Use `mise` to install the Python version specified in the project:
-```shell
-mise install
-```
-2.  **Install dependencies:**
-```shell
-pip install -r requirements.txt && \
-ansible-galaxy install -r requirements.yml -f && \
-cp {OS}.dist.config.yml config.yml
-```
+1. **Install Python:**
+    Use `mise` to install the Python version specified in the project:
+    ```shell
+    mise install
+    ```
+2. **Install dependencies:**
+    ```shell
+    pip install -r requirements.txt && \
+    ANSIBLE_HOME=$PWD/.ansible ansible-galaxy install -r requirements.yml -f
+    ```
 
 ## **Run playbook:**
 ```shell
 # all
-ansible-playbook main.yml --ask-become-pass
+ANSIBLE_HOME=$PWD/.ansible ansible-playbook main.yml -K
 # specific
-ansible-playbook main.yml --ask-become-pass --tags="vscode,dnsmasq"
+ANSIBLE_HOME=$PWD/.ansible ansible-playbook main.yml -K --tags="vscode,dnsmasq"
 ```

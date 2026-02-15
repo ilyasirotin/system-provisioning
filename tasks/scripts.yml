@@ -6,7 +6,7 @@
     - name: Find all setup scripts matching the current OS family
       ansible.builtin.find:
         paths: "{{ scripts_dir }}"
-        patterns: "{{ ansible_os_family }}-*.sh"
+        patterns: "{{ ansible_facts['os_family'] }}-*.sh"
         file_type: file
       register: os_specific_scripts
 

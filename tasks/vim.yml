@@ -2,6 +2,6 @@
 - name: Create vimrc config from template
   ansible.builtin.template:
     src: "vimrc.j2"
-    dest: "{{ ansible_user_dir }}/.vimrc"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
+    dest: "{{ ansible_facts['user_dir'] }}/.vimrc"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"

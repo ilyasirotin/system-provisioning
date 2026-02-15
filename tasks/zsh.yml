@@ -18,15 +18,15 @@
 
 - name: Create completion scripts directory
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.zsh/completions"
+    path: "{{ ansible_facts['user_dir'] }}/.zsh/completions"
     state: directory
 
 - name: Create zsh configs from templates
   ansible.builtin.template:
-    src: "{{ ansible_os_family }}_{{ item }}.j2"
-    dest: "{{ ansible_user_dir }}/.{{ item }}"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
+    src: "{{ ansible_facts['os_family'] }}_{{ item }}.j2"
+    dest: "{{ ansible_facts['user_dir'] }}/.{{ item }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
   loop:
     - zshrc
     - zprofile
