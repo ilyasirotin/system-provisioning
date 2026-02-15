@@ -6,14 +6,7 @@
 
 - name: Create ssh config from template
   ansible.builtin.template:
-    src: ssh-config.j2
-    dest: "{{ playbook_dir }}/files/ssh-config"
+    src: "ssh_config.j2"
+    dest: "{{ ansible_user_dir }}/.ssh/config"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"
-
-- name: Link ssh config
-  ansible.builtin.include_role:
-    name: symlink
-  vars:
-    symlink_src: "{{ playbook_dir }}/files/ssh-config"
-    symlink_dst: "{{ ansible_user_dir }}/.ssh/config"

@@ -1,0 +1,25 @@
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github
+    IdentityAgent none
+    IdentitiesOnly yes
+
+Host router.lan
+    Port 8392
+
+Host extender.lan
+    Port 5823
+
+Host hetzner.gha-runner-arm64
+    HostName 77.42.75.240
+    Port 6548
+    User gha
+    IdentityFile ~/.ssh/hetzner.gha-runner-arm64.pub
+    IdentityAgent "~/.1password/agent.sock"
+    IdentitiesOnly yes
+
+Host *
+    IdentityAgent "~/.1password/agent.sock"
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/general.pub

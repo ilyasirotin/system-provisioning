@@ -1,0 +1,27 @@
+---
+- name: Execute OS-specific setup scripts
+  vars:
+    scripts_dir: "{{ playbook_dir }}/scripts"
+  block:
+    - name: Find all setup scripts matching the current OS family
+      ansible.builtin.find:
+        paths: "{{ scripts_dir }}"
+        patterns: "{{ ansible_os_family }}-*.sh"
+        file_type: file
+      register: os_specific_scripts
+
+    - name: Make matched scripts executable
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        mode: "a+x"
+      loop: "{{ os_specific_scripts.files }}"
+      loop_control:
+        label: "{{ item.path }}"
+
+    - name: Run OS-specific setup scripts
+      ansible.builtin.shell: |
+        HOSTNAME="{{ hostname }}" COMPUTER_NAME="{{ computer_name }}" {{ item.path }}
+      become: true
+      loop: "{{ os_specific_scripts.files }}"
+      loop_control:
+        label: "{{ item.path }}"

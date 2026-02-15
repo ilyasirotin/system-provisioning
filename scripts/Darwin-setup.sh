@@ -4,6 +4,14 @@
 # General                                                                     #
 ###############################################################################
 
+# Disable startup sound
+sudo nvram StartupMute=%01
+
+sudo scutil --set ComputerName "$COMPUTER_NAME" && \
+sudo scutil --set HostName "$HOSTNAME" && \
+sudo scutil --set LocalHostName "$HOSTNAME" && \
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$HOSTNAME"
+
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false

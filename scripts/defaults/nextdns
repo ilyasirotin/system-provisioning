@@ -1,7 +1,0 @@
-#!/bin/bash
-
-defaults write -app "NextDNS" config -string "$NEXTDNS_PROFILE_ID"
-
-defaults write -app "NextDNS" reportDeviceName -int 1
-
-defaults write -app "NextDNS" startAtLogin -int 0

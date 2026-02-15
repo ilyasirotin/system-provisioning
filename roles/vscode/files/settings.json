@@ -20,13 +20,14 @@
         "*plays.yml": "ansible",
         "*init.yml": "yaml",
         "*.dat": "csv (pipe)",
-        "*.csv": "csv (semicolon)"
+        "*.csv": "csv (semicolon)",
+	"*.plist": "xml"
     },
     "path-autocomplete.triggerOutsideStrings": true,
     "terminal.integrated.allowChords": false,
     "vim.smartRelativeLine": true,
     "window.title": "${activeEditorLong}${separator}${rootName}",
-    "workbench.editor.closeEmptyGroups": false,
+    "workbench.editor.closeEmptyGroups": true,
     "workbench.editor.labelFormat": "short",
     "workbench.editor.revealIfOpen": true,
     "workbench.editor.showTabs": "multiple",
@@ -74,13 +75,14 @@
     "git.autofetch": true,
     "oneDarkPro.vivid": true,
     "oneDarkPro.italic": true,
-    "editor.fontFamily": "'Fira Code', Monaco, Menlo, 'Cascadia Code', 'IBM Plex Mono', monospace",
+    "editor.fontFamily": "'IBM Plex Mono', 'Fira Code', Monaco, Menlo, 'Cascadia Code', monospace",
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
     "editor.fontWeight": "normal",
-    "editor.fontSize": 12,
+    "editor.fontSize": 13,
     "editor.rulers": [
         120
     ],
+    "terminal.integrated.fontSize": 13,
     "explorer.confirmDelete": false,
     "editor.accessibilitySupport": "off",
     "redhat.telemetry.enabled": false,
@@ -111,5 +113,8 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
-    "python.createEnvironment.trigger": "off"
+    "python.createEnvironment.trigger": "off",
+    "claudeCode.preferredLocation": "panel",
+    "workbench.tree.renderIndentGuides": "always",
+    "ansible.lightspeed.enabled": false
 }

@@ -1,7 +1,0 @@
-{
-    "ansible.ansible.useFullyQualifiedCollectionNames": true,
-    "files.associations": {
-        "*.yml": "ansible",
-        "*.yaml": "ansible",
-    }
-}

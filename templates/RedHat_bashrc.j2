@@ -1,0 +1,106 @@
+# .bashrc
+
+# ----------------------------------------------------------------------------------------------------------------------
+# COMMON SETTINGS
+# ----------------------------------------------------------------------------------------------------------------------
+
+# --- Colorized terminal ---
+unset LSCOLORS
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
+
+# --- Init completions ---
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+elif [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+fi
+
+# --- Set custom prompt ---
+GREEN="\[\033[32m\]"
+YELLOW="\[\033[33m\]"
+CYAN="\[\033[36m\]"
+RESET="\[\033[0m\]"
+
+PS1="${GREEN}\u${RESET}@${YELLOW}\h${RESET} ${CYAN}\w${RESET}\n> "
+
+# --- Source global definitions ---
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# --- User specific environment ---
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# --- Common exports ---
+export COMPOSER_HOME=$HOME/.composer
+
+# --- Activate mise ---
+eval "$(mise activate bash)"
+
+# ----------------------------------------------------------------------------------------------------------------------
+# ALIASES
+# ----------------------------------------------------------------------------------------------------------------------
+
+# --- Git aliases ---
+alias gs="git status"
+alias gc="git commit"
+alias gp="git pull"
+alias gcam="git commit -am"
+alias gl="git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
+
+# --- Docker ---
+alias dvpurge="docker volume rm \$(docker volume ls -qf dangling=true)"
+alias dvls="docker volume ls"
+alias dnls="docker network ls"
+alias dpsa="docker ps -a"
+
+# --- General aliases ---
+alias ls='ls --color=auto'
+alias ll="ls -lhF"
+alias la="ls -lhaF"
+alias grep='grep --color=auto'
+alias mann="tldr"
+
+# ----------------------------------------------------------------------------------------------------------------------
+# FUNCTIONS
+# ----------------------------------------------------------------------------------------------------------------------
+
+# --- User specific aliases and functions ---
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+
+# --- Switch PHP version ---
+function phpv() {
+    local version="$1"
+    sudo dnf module reset php
+    sudo dnf module enable "php:remi-$version"
+    sudo dnf distro-sync
+
+    printf "\nINSTALLED VERSION: >>>>>>>>>>>>>>>>>>\n\n"
+    php --version
+    printf "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n";
+}
+
+# --- Other ---
+open() {
+    DESKTOP=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
+
+    if [[ "$DESKTOP" == *"gnome"* ]]; then 
+        nautilus $1
+    elif [[ "$DESKTOP" == *"kde"* ]]; then
+        dolphin $1
+    else
+        echo "Desktop environment not recognized or not set."
+        echo "Detected: $XDG_CURRENT_DESKTOP"
+    fi
+}

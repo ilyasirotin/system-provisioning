@@ -1,13 +1,8 @@
 .idea
+.vscode
 .ansible
 .venv
 .DS_Store
 *.retry
 config.yml
 *.swp
-
-/files/*/zprofile
-/files/*/zshrc
-/files/*vimrc
-/files/*ssh-config
-/files/*ssh-agent-config.toml

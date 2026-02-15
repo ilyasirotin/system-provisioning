@@ -1,5 +1,5 @@
 ---
-- name: MacOS configuration
+- name: Host configuration
   hosts: local
 
   vars_files:
@@ -15,53 +15,34 @@
   roles:
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
-    - role: geerlingguy.mac.dock
-      when: configure_dock
-      tags: ['dock']
+      when: ansible_os_family == "Darwin"
     - role: dnsmasq
       tags: ['dnsmasq']
     - role: git
       tags: ['git']
-    - role: php
-      tags: ['php']
+    - role: vscode
+      tags: ['vscode']
 
   tasks:
-    - ansible.builtin.import_tasks: tasks/vscode.yml
-      when: configure_vscode
-      tags: ['vscode']
+    - ansible.builtin.import_tasks: tasks/scripts.yml
+      tags: ['scripts']
 
     - ansible.builtin.import_tasks: tasks/zsh.yml
       tags: ['shell', 'zsh']
+      when: ansible_os_family == "Darwin"
 
-    - ansible.builtin.import_tasks: tasks/xattr.yml
-      tags: ['xattr']
+    - ansible.builtin.import_tasks: tasks/bash.yml
+      tags: ['shell', 'bash']
+      when: ansible_os_family == "RedHat"
 
     - ansible.builtin.import_tasks: tasks/ssh.yml
       tags: ['ssh']
 
-    - ansible.builtin.import_tasks: tasks/dotfiles.yml
-      tags: ['dotfiles']
+    - ansible.builtin.import_tasks: tasks/vim.yml
+      tags: ['vim']
 
     - ansible.builtin.import_tasks: tasks/github.yml
       tags: ['github']
 
-    - name: Include defaults configuration task
-      ansible.builtin.include_tasks:
-        file: tasks/defaults.yml
-        apply:
-          tags: ["defaults"]
-      loop: "{{ app_defaults_scripts }}"
-      tags: ["defaults"]
-
-    - ansible.builtin.import_tasks: tasks/osx-setup.yml
-      tags: ['osx-setup']
-
-    - name: Run post-provision task files
-      tags: ['post']
-      notify: Clear homebrew cache
-      block:
-        - name: Run configured post-provision ansible task files
-          ansible.builtin.include_tasks: "{{ outer_item }}"
-          loop_control:
-            loop_var: outer_item
-          with_fileglob: "{{ post_provision_tasks | default(omit) }}"
+    - ansible.builtin.import_tasks: tasks/1password.yml
+      tags: ['1password']

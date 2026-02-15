@@ -1,9 +1,4 @@
 ---
-- name: Ensure VSCode already installed
-  community.general.homebrew_cask:
-    name: visual-studio-code
-    state: present
-
 - name: Check for vscode
   ansible.builtin.command: "code --version"
   register: vscode_installed
@@ -25,16 +20,29 @@
   when: vscode_installed.rc == 0 and item not in vscode_extensions_installed.stdout_lines
   changed_when: vscode_extensions_installed.rc == 0
 
-- name: Link vscode settings.json file
-  ansible.builtin.include_role:
-    name: symlink
+- name: Load OS-specific variables
+  include_vars: "{{ lookup('first_found', params) }}"
   vars:
-    symlink_src: "{{ playbook_dir }}/files/vscode/vscode-settings.json"
-    symlink_dst: "{{ ansible_user_dir }}/Library/Application Support/Code/User/settings.json"
+    params:
+      files:
+        - "{{ ansible_os_family }}.yml"
+      paths:
+        - "vars"
 
-- name: Link vscode keybindings.json file
-  ansible.builtin.include_role:
-    name: symlink
-  vars:
-    symlink_src: "{{ playbook_dir }}/files/vscode/vscode-keybindings.json"
-    symlink_dst: "{{ ansible_user_dir }}/Library/Application Support/Code/User/keybindings.json"
+- name: Ensure VSCode configs directory exists
+  file:
+    path: "{{ vscode_configs_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy vscode settings.json file
+  ansible.builtin.copy:
+    src: settings.json
+    dest: "{{ vscode_configs_path }}/settings.json"
+    mode: "0644"
+
+- name: Copy vscode keybindings.json file
+  ansible.builtin.copy:
+    src: keybindings.json
+    dest: "{{ vscode_configs_path }}/keybindings.json"
+    mode: "0644"
