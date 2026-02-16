@@ -1,0 +1,71 @@
+---
+- name: Gather installed packages facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Remove old versions of Docker
+  ansible.builtin.dnf:
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+    state: absent
+  become: true
+  when: "'docker-ce' not in ansible_facts.packages"
+
+- name: Add Docker CE repository
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: Install Docker Engine and plugins
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+  become: true
+  notify: Restart Docker
+
+- name: Ensure Docker and containerd services are enabled and started
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - docker
+    - containerd
+  become: true
+
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+  become: true
+
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ docker_user }}"
+    groups: docker
+    append: true
+  become: true
+
+# Post-installation step: Reset SSH connection to immediately apply new group permissions
+# Meta tasks do not support 'when' conditionals, so this runs unconditionally.
+# It does not break idempotency as it only refreshes the SSH session.
+- name: Reset connection to apply group changes
+  ansible.builtin.meta: reset_connection
