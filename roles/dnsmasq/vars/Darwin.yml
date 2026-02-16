@@ -1,0 +1,5 @@
+---
+dnsmasq_config_path: "{{ homebrew_prefix | default('/opt/homebrew') }}/etc/dnsmasq.conf"
+dnsmasq_service_name: "homebrew.mxcl.dnsmasq"
+dnsmasq_user: "{{ ansible_facts['user_id'] }}"
+dnsmasq_group: "{{ ansible_facts['user_gid'] }}"

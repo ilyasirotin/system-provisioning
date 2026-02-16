@@ -1,33 +1,77 @@
 ---
-- name: Install homebrew packages
+- name: Load OS-specific variables
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_facts['os_family'] }}.yml"
+      paths:
+        - "vars"
+
+- name: Install Dnsmasq (Darwin)
   community.general.homebrew:
     name: dnsmasq
     state: present
   notify:
     - Clear homebrew cache
     - Restart Dnsmasq
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Install Dnsmasq (RedHat)
+  ansible.builtin.dnf:
+    name: dnsmasq
+    state: present
+  become: true
+  notify:
+    - Restart Dnsmasq
+  when: ansible_facts['os_family'] == 'RedHat'
 
 - name: Copy Dnsmasq configuration in place
   ansible.builtin.template:
     src: dnsmasq.conf.j2
-    dest: "{{ homebrew_prefix }}/etc/dnsmasq.conf"
-    owner: "{{ ansible_facts['user_id'] }}"
-    group: "{{ ansible_facts['user_gid'] }}"
+    dest: "{{ dnsmasq_config_path }}"
+    owner: "{{ dnsmasq_user }}"
+    group: "{{ dnsmasq_group }}"
     mode: "0644"
+  become: "{{ ansible_facts['os_family'] == 'RedHat' }}"
   notify:
     - Restart Dnsmasq
 
-- name: Ensure resolver directory exists
+# The /etc/resolver trick is macOS-specific.
+# On RedHat, system DNS routing is typically managed via NetworkManager or systemd-resolved.
+- name: Ensure resolver directory exists (Darwin)
   ansible.builtin.file:
     dest: /etc/resolver
     state: directory
     mode: "0755"
   become: true
+  when: ansible_facts['os_family'] == 'Darwin'
 
-- name: Configure Dnsmasq resolver
+- name: Configure Dnsmasq resolver (Darwin)
   ansible.builtin.copy:
     src: resolver.conf
     dest: "/etc/resolver/{{ item.domain }}"
     mode: "0644"
   loop: "{{ dnsmasq_hosts }}"
   become: true
+  when: ansible_facts['os_family'] == 'Darwin'
+
+# systemd-resolved integration for RedHat
+- name: Ensure systemd-resolved drop-in directory exists (RedHat)
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    mode: "0755"
+  become: true
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Configure systemd-resolved for local domains (RedHat)
+  ansible.builtin.template:
+    src: resolved-domain.conf.j2
+    dest: "/etc/systemd/resolved.conf.d/{{ item.domain }}.conf"
+    mode: "0644"
+  loop: "{{ dnsmasq_hosts }}"
+  become: true
+  notify:
+    - Restart systemd-resolved
+  when: ansible_facts['os_family'] == 'RedHat'

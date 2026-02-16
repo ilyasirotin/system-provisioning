@@ -1,3 +1,11 @@
+# Bind to localhost only and strictly to the specified interface
+# to prevent port 53 conflicts with systemd-resolved
+listen-address=127.0.0.1
+bind-interfaces
+
+# Do not read /etc/resolv.conf to prevent DNS loops with systemd-resolved
+no-resolv
+
 {% for host in dnsmasq_hosts %}
 address=/{{ host.domain }}/{{ host.ip }}
 {% endfor %}

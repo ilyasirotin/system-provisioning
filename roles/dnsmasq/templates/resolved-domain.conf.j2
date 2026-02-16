@@ -1,0 +1,9 @@
+# Configuration for routing .{{ item.domain }} domain to local Dnsmasq
+[Resolve]
+DNS=127.0.0.1
+Domains=~{{ item.domain }}
+
+# Disable DNSSEC and multicast protocols for local domains to prevent timeouts
+DNSSEC=no
+LLMNR=no
+MulticastDNS=no

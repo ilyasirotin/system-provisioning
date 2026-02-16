@@ -1,15 +1,34 @@
 ---
-- name: Deploy Dnsmasq job definition
+- name: Deploy Dnsmasq job definition (Darwin)
   ansible.builtin.copy:
-    src: "{{ homebrew_prefix }}/opt/dnsmasq/homebrew.mxcl.dnsmasq.plist"
+    src: "{{ homebrew_prefix | default('/opt/homebrew') }}/opt/dnsmasq/homebrew.mxcl.dnsmasq.plist"
     dest: "/Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
     mode: "0644"
   listen: Restart Dnsmasq
   become: true
+  when: ansible_facts['os_family'] == 'Darwin'
 
-- name: Restart Dnsmasq service
+- name: Restart Dnsmasq service (Darwin)
   community.general.launchd:
-    name: homebrew.mxcl.dnsmasq
+    name: "{{ dnsmasq_service_name }}"
     state: restarted
   listen: Restart Dnsmasq
   become: true
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Restart Dnsmasq service (RedHat)
+  ansible.builtin.systemd:
+    name: "{{ dnsmasq_service_name }}"
+    state: restarted
+    enabled: true
+  listen: Restart Dnsmasq
+  become: true
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Restart systemd-resolved service (RedHat)
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    state: restarted
+  listen: Restart systemd-resolved
+  become: true
+  when: ansible_facts['os_family'] == 'RedHat'
