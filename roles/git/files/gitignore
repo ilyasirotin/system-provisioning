@@ -38,3 +38,6 @@
 
 # Ansible
 .ansible
+
+# PHP
+vendor/
