@@ -19,6 +19,7 @@
     state: absent
   become: true
   when: "'docker-ce' not in ansible_facts.packages"
+  failed_when: false
 
 - name: Add Docker CE repository
   ansible.builtin.get_url:
